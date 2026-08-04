@@ -12,7 +12,7 @@ The goal of this task is to build the initial semantic HTML structure of a compa
 
 - HTML5
 - CSS3
-- JavaScript (linked only)
+- JavaScript
 - Visual Studio Code
 - Git
 - GitHub
@@ -59,6 +59,15 @@ task-01-responsive-website/
 - Desktop layout completed.
 - Header, navigation, hero, about, services, statistics, contact form, and footer styled.
 
+### Task 03
+
+- Responsive CSS implemented using media queries.
+- Responsive layouts added for desktop, tablet, and mobile devices.
+- Services and Statistics sections adapted for different screen sizes.
+- Accessible mobile navigation menu implemented using JavaScript.
+- Mobile menu supports keyboard accessibility and closes after navigation.
+- Cross-device testing completed.
+
 ---
 
 ## Design Approach
@@ -67,17 +76,42 @@ task-01-responsive-website/
 - CSS Grid for the Services and Statistics sections.
 - Reusable styles for common elements.
 - External CSS file used for all styling.
+- Responsive design using media queries.
+- Accessible mobile navigation with JavaScript.
 
-## Desktop Preview
+## Responsive Preview
 
-### Desktop Preview 1
+### Desktop
 
-![Desktop Preview 1](images/desktop-preview-1.png)
+![Desktop Preview](images/desktop-preview-1.png)
 
-### Desktop Preview 2
+### Tablet
 
-![Desktop Preview 2](images/desktop-preview-2.png)
+![Tablet Preview](images/tablet-preview-1.png)
 
+### Mobile
+
+![Mobile Preview](images/mobile-preview-1.png)
+
+### Desktop
+
+![Desktop Preview](images/desktop-preview-2.png)
+
+### Tablet
+
+![Tablet Preview](images/tablet-preview-2.png)
+
+### Mobile
+
+![Mobile Preview](images/mobile-preview-2.png)
+
+### Tablet
+
+![Tablet Preview](images/tablet-preview-3.png)
+
+### Mobile
+
+![Mobile Preview](images/mobile-preview-3.png)
 ## Challenges
 
 No challenges were encountered during this task.
