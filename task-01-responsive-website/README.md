@@ -2,9 +2,9 @@
 
 ## Project Description
 
-This project is the first training task for the Blue Information Technology Full-Stack Training Program.
+This project is part of the Blue Information Technology Full-Stack Training Program.
 
-The goal of this task is to build the initial semantic HTML structure of a company website while applying Git workflow, repository organization, and HTML5 semantic elements.
+The website was built using semantic HTML, responsive CSS, and vanilla JavaScript while following accessibility best practices and clean code organization.
 
 ---
 
@@ -12,7 +12,7 @@ The goal of this task is to build the initial semantic HTML structure of a compa
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (Vanilla JS)
 - Visual Studio Code
 - Git
 - GitHub
@@ -21,7 +21,7 @@ The goal of this task is to build the initial semantic HTML structure of a compa
 
 ## Project Folder Structure
 
-```
+```text
 task-01-responsive-website/
 │
 ├── index.html
@@ -30,7 +30,19 @@ task-01-responsive-website/
 ├── js/
 │   └── main.js
 ├── images/
-│   └── blue.png
+│   ├── blue.png
+│   ├── desktop-preview-1.png
+│   ├── desktop-preview-2.png
+│   ├── tablet-preview-1.png
+│   ├── tablet-preview-2.png
+│   ├── tablet-preview-3.png
+│   ├── mobile-preview-1.png
+│   ├── mobile-preview-2.png
+│   ├── mobile-preview-3.png
+│   ├── formValidation1.png
+│   ├── formValidation2.png
+│   ├── formValidation3.png
+│   └── ActiveNavigationAndBacktoTop.png
 └── README.md
 ```
 
@@ -39,79 +51,153 @@ task-01-responsive-website/
 ## How to Run the Project
 
 1. Clone the repository.
+
+```bash
+git clone <repository-url>
+```
+
 2. Open the project using Visual Studio Code.
-3. Open `index.html` in your web browser.
+
+3. Open `index.html` in your browser.
 
 ---
 
-## Task Summary
+# Task Summary
 
-### Task 01
+## Task 01
+
 - Environment setup.
 - Git repository initialization.
 - GitHub repository creation.
-- Semantic HTML page structure.
+- Semantic HTML structure.
+- HTML5 semantic elements.
 
-### Task 02
+---
+
+## Task 02
+
 - CSS architecture created.
 - CSS variables and reset implemented.
 - Typography and base styles added.
 - Desktop layout completed.
 - Header, navigation, hero, about, services, statistics, contact form, and footer styled.
 
-### Task 03
+---
 
-- Responsive CSS implemented using media queries.
-- Responsive layouts added for desktop, tablet, and mobile devices.
-- Services and Statistics sections adapted for different screen sizes.
-- Accessible mobile navigation menu implemented using JavaScript.
-- Mobile menu supports keyboard accessibility and closes after navigation.
+## Task 03
+
+- Responsive layout implemented using Media Queries.
+- Desktop, Tablet and Mobile support.
+- Responsive Services and Statistics sections.
+- Accessible mobile navigation menu.
+- Keyboard accessible navigation.
+- Mobile menu closes after navigation.
 - Cross-device testing completed.
 
 ---
 
-## Design Approach
+## Task 04
 
-- CSS Variables for colors and spacing.
-- CSS Grid for the Services and Statistics sections.
-- Reusable styles for common elements.
-- External CSS file used for all styling.
-- Responsive design using media queries.
-- Accessible mobile navigation with JavaScript.
+### JavaScript
 
-## Responsive Preview
+- Organized JavaScript into reusable initialization functions.
+- Mobile navigation interactions.
+- Contact form validation.
+- Live input validation.
+- Blur validation.
+- Character counter.
+- Success message.
+- Back-to-top button.
+- Active navigation using Intersection Observer.
+- Animated statistics counters.
+- Reduced motion support.
+- Defensive DOM element checks.
 
-### Desktop
+### Form Validation
+
+- Required field validation.
+- Name validation (2–60 characters).
+- Email validation.
+- Optional phone validation.
+- Subject validation.
+- Message validation (10–500 characters).
+- Focus on the first invalid field.
+- Prevent form submission when validation fails.
+- Reset form after successful submission.
+
+### Accessibility
+
+- aria-label
+- aria-controls
+- aria-expanded
+- aria-describedby
+- aria-invalid
+- aria-live
+- Keyboard accessible interactions
+
+---
+
+# Design Approach
+
+- Semantic HTML5.
+- CSS Variables.
+- CSS Grid.
+- Responsive Design.
+- Mobile-first responsive behavior.
+- Vanilla JavaScript.
+- Reusable helper functions.
+- Accessibility-focused implementation.
+
+---
+
+# Responsive Preview
+
+## Desktop
 
 ![Desktop Preview](images/desktop-preview-1.png)
 
-### Tablet
+![Desktop Preview](images/desktop-preview-2.png)
+
+---
+
+## Tablet
 
 ![Tablet Preview](images/tablet-preview-1.png)
 
-### Mobile
-
-![Mobile Preview](images/mobile-preview-1.png)
-
-### Desktop
-
-![Desktop Preview](images/desktop-preview-2.png)
-
-### Tablet
-
 ![Tablet Preview](images/tablet-preview-2.png)
-
-### Mobile
-
-![Mobile Preview](images/mobile-preview-2.png)
-
-### Tablet
 
 ![Tablet Preview](images/tablet-preview-3.png)
 
-### Mobile
+---
+
+## Mobile
+
+![Mobile Preview](images/mobile-preview-1.png)
+
+![Mobile Preview](images/mobile-preview-2.png)
 
 ![Mobile Preview](images/mobile-preview-3.png)
-## Challenges
 
-No challenges were encountered during this task.
+---
+
+# JavaScript Features
+
+## Form Validation
+
+![Form Validation](images/formValidation1.png)
+
+![Form Validation](images/formValidation2.png)
+
+![Form Validation](images/formValidation3.png)
+
+---
+
+## Active Navigation & Back To Top
+
+![Active Navigation](images/ActiveNavigationAndBacktoTop.png)
+
+---
+
+# Challenges
+
+None

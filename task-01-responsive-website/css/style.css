@@ -131,6 +131,10 @@ nav {
     background-color: var(--secondary-color);
     padding: 15px;
     text-align: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 nav a {
@@ -176,9 +180,6 @@ nav a:hover {
 
 /* Services Section */
 
-#services {
-    background-color: var(--white-color);
-}
 
 #services h2 {
     text-align: center;
@@ -186,9 +187,11 @@ nav a:hover {
 }
 
 #services {
+    background-color: var(--white-color);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    padding: 25px 0 60px;
 }
 
 #services h2 {
@@ -292,6 +295,11 @@ button:hover {
     transform: translateY(-3px);
 }
 
+#menu a.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 /* Footer */
 
 footer {
@@ -319,6 +327,92 @@ footer a:hover {
     color: var(--primary-color);
 }
 
+/* Error Messages */
+
+.error-message {
+    display: none;
+
+    color: #dc2626;
+    background-color: #fff5f5;
+
+    border: 1px solid #ef4444;
+    border-left: 4px solid #dc2626;
+
+    border-radius: 6px;
+    padding: 10px;
+
+    margin-top: 8px;
+    margin-bottom: 15px;
+
+    font-size: 0.9rem;
+}
+
+.error {
+    border: 2px solid #dc2626 !important;
+}
+
+/* Success Message */
+
+.success-message {
+    display: none;
+
+    padding: 12px;
+    margin-bottom: 20px;
+
+    background-color: #ecfdf5;
+    color: #166534;
+
+    border: 1px solid #22c55e;
+    border-left: 4px solid #16a34a;
+
+    border-radius: 6px;
+
+    font-size: 0.95rem;
+}
+
+/* Character Counter */
+
+.message-counter {
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Back To Top */
+
+#back-to-top {
+    display: none;
+
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: var(--primary-color);
+    color: var(--white-color);
+
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+
+    transition: var(--transition);
+
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: #005fa3;
+    transform: translateY(-3px);
+}
 
 /* Responsive - 1024px */
 
