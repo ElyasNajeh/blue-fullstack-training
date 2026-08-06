@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Information Technology</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <img src="images/blue.png" alt="Company Logo">
+        <button class="menu-toggle" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+    </header>
+    <nav id="menu">
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#aboutus">About</a>
+        <a href="#contactus">Contact Us</a>
+    </nav>
+    <main>
+        <section id="hero">
+            <h1>Blue Information Technology</h1>
+            <p>build modern web solutions for businesses.</p>
+            <a href="#contactus">Get Started</a>
+        </section>
+
+        <section id="services">
+            <h2>Services</h2>
+            <article>
+                <h3>Web Development</h3>
+                <p>Building responsive and modern websites for businesses.</p>
+            </article>
+
+            <article>
+                <h3>Mobile Applications</h3>
+                <p>Developing Android and iOS applications with modern technologies.</p>
+            </article>
+
+            <article>
+                <h3>UI/UX Design</h3>
+                <p>Designing attractive and user-friendly interfaces.</p>
+            </article>
+
+            <article>
+                <h3>Cloud Solutions</h3>
+                <p>Providing secure cloud hosting and infrastructure services.</p>
+            </article>
+
+            <article>
+                <h3>Digital Marketing</h3>
+                <p>Helping businesses reach more customers through digital platforms.</p>
+            </article>
+
+            <article>
+                <h3>Technical Support</h3>
+                <p>Providing continuous maintenance and technical assistance.</p>
+            </article>
+        </section>
+        <section id="aboutus">
+            <h2>About Us</h2>
+
+            <p>
+                Blue Information Technology is a leading software company specializing in
+                web development, mobile applications, cloud solutions, and digital
+                transformation. We are committed to delivering innovative, reliable,
+                and high-quality technology solutions that help businesses grow.
+            </p>
+        </section>
+        <section id="statistics">
+            <h2>Our Statistics</h2>
+            <article>
+                <h3>250+</h3>
+                <p>Projects Completed</p>
+            </article>
+
+            <article>
+                <h3>150+</h3>
+                <p>Happy Clients</p>
+            </article>
+
+            <article>
+                <h3>10+</h3>
+                <p>Years of Experience</p>
+            </article>
+        </section>
+        <section id="contactus">
+
+            <h2>Contact Us</h2>
+
+            <p>
+                Have a project in mind? We'd love to hear from you.
+                Fill out the form below and our team will contact you shortly.
+            </p>
+            <form action="#">
+                <div id="success-message" class="success-message" aria-live="polite">
+                </div>
+
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" required aria-describedby="name-error" aria-invalid="false">
+                <small class="error-message" id="name-error"></small>
+
+                <br><br>
+
+                <label for="email">Email:</label>
+                <input id="email" name="email" type="email" required aria-describedby="email-error"
+                    aria-invalid="false">
+                <small class="error-message" id="email-error"></small>
+
+                <br><br>
+
+                <label for="phone">Phone Number:</label>
+                <input id="phone" name="phone" type="tel" aria-describedby="phone-error" aria-invalid="false">
+                <small class="error-message" id="phone-error"></small>
+
+                <br><br>
+
+                <label for="subject">Subject:</label>
+                <input id="subject" name="subject" type="text" required aria-describedby="subject-error"
+                    aria-invalid="false">
+                <small class="error-message" id="subject-error"></small>
+
+                <br><br>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required aria-describedby="message-error message-counter"
+                    aria-invalid="false">
+</textarea>
+                <div id="message-counter" class="message-counter" aria-live="polite">
+                    0 / 500
+                </div>
+                <small class="error-message" id="message-error"></small>
+
+                <br><br>
+
+                <button type="submit">Send Message</button>
+
+            </form>
+        </section>
+    </main>
+    <footer>
+
+        <h3>Blue Information Technology</h3>
+
+        <p>
+            Delivering innovative software solutions for businesses worldwide.
+        </p>
+
+        <a href="#hero">Home</a> |
+        <a href="#services">Services</a> |
+        <a href="#aboutus">About</a> |
+        <a href="#contactus">Contact</a>
+
+        <p>
+            &copy; 2026 Blue Information Technology. All Rights Reserved.
+        </p>
+
+    </footer>
+    <button id="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
