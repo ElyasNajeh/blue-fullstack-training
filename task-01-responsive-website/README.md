@@ -135,6 +135,18 @@ git clone <repository-url>
 - aria-live
 - Keyboard accessible interactions
 
+## Task 05
+
+### Testing & QA
+
+- Functional testing completed.
+- Accessibility testing completed.
+- Responsive testing completed.
+- Cross-browser testing (Chrome & Edge).
+- Keyboard navigation tested.
+- Console checked with no JavaScript errors.
+- QA checklist added.
+
 ---
 
 # Design Approach
@@ -149,6 +161,7 @@ git clone <repository-url>
 - Accessibility-focused implementation.
 
 ---
+
 
 # Responsive Preview
 
@@ -195,6 +208,21 @@ git clone <repository-url>
 ## Active Navigation & Back To Top
 
 ![Active Navigation](images/ActiveNavigationAndBacktoTop.png)
+
+---
+# QA Checklist
+
+The project was tested before submission, including:
+
+- Functional testing
+- Accessibility testing
+- Responsive testing
+- Browser compatibility testing
+- Console error checking
+
+See the complete checklist in:
+
+- `qa-checklist.md`
 
 ---
 
