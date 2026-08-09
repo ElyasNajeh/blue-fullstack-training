@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 const prefersReducedMotion =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const POSTS_API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 const projects = [
     {
@@ -57,6 +58,7 @@ function initializeApp() {
     initializeStatisticsCounter();
     renderProjects(projects);
     initializeProjectFilters();
+    fetchPosts();
 }
 // Mobile Navigation
 function initializeMobileMenu() {
@@ -449,4 +451,74 @@ function initializeProjectFilters() {
             }
         })
     })
+}
+function renderLoading() {
+    const posts_container = document.getElementById("posts-container");
+    posts_container.innerHTML = `
+
+        <div class="loading-state">
+
+            <div class="spinner"></div>
+
+            <p>
+
+                Loading Posts...
+
+            </p>
+
+        </div>
+
+    `;
+}
+function renderErrorState() {
+    const posts_container = document.getElementById("posts-container");
+    posts_container.innerHTML = `
+    <div class="error-state">
+            <p>Unable to load posts. Please try again.</p>
+
+            <button type="button" class="retry-btn">
+                Retry
+            </button>
+        </div>
+    `;
+    const retryButton = posts_container.querySelector(".retry-btn");
+
+    retryButton.addEventListener("click", fetchPosts);
+}
+function renderEmptyState() {
+    const posts_container = document.getElementById("posts-container");
+
+    posts_container.innerHTML = `
+        <div class="empty-state">
+            <p>No posts available.</p>
+        </div>
+    `;
+}
+function renderPosts(posts) {
+    const postsResult = document.getElementById("posts-container");
+    postsResult.innerHTML = posts.map(post => `
+        <article class="post-card">
+            <h3>${post.title}</h3>
+
+            <p>${post.body}</p>
+        </article>
+        `).join("");
+}
+async function fetchPosts() {
+    renderLoading();
+    try {
+        const response = await fetch(POSTS_API_URL)
+        if (!response.ok) {
+            throw new Error("Failed to fetch data");
+        }
+        const data = await response.json()
+        if (data.length === 0) {
+            return renderEmptyState()
+        }
+        const firstSix = data.slice(0, 6);
+        return renderPosts(firstSix);
+    } catch (error) {
+        console.log(error);
+        renderErrorState();
+    }
 }
