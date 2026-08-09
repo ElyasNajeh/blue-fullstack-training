@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const prefersReducedMotion =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const POSTS_API_URL = "https://jsonplaceholder.typicode.com/posts";
-
+let loadedPosts = []
 const projects = [
     {
         id: 1,
@@ -59,6 +59,7 @@ function initializeApp() {
     renderProjects(projects);
     initializeProjectFilters();
     fetchPosts();
+    initializePostsSearch()
 }
 // Mobile Navigation
 function initializeMobileMenu() {
@@ -434,6 +435,23 @@ function renderProjects(projects) {
 }
 function initializeProjectFilters() {
     const buttons = document.querySelectorAll(".filter-btn")
+    const savedCategory = localStorage.getItem("selectedProjectCategory");
+    if (savedCategory) {
+        buttons.forEach(btn => {
+            btn.classList.remove("active")
+            if (btn.dataset.category === savedCategory) {
+                btn.classList.add("active")
+            }
+        })
+        if (savedCategory === "All") {
+            renderProjects(projects);
+        } else {
+            const filteredArray = projects.filter(e => {
+                return e.category === savedCategory;
+            })
+            renderProjects(filteredArray)
+        }
+    }
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             buttons.forEach(btn => {
@@ -441,6 +459,7 @@ function initializeProjectFilters() {
             })
             button.classList.add("active");
             const category = button.dataset.category;
+            localStorage.setItem("selectedProjectCategory", category);
             if (category === "All") {
                 return renderProjects(projects);
             } else {
@@ -485,12 +504,12 @@ function renderErrorState() {
 
     retryButton.addEventListener("click", fetchPosts);
 }
-function renderEmptyState() {
+function renderEmptyState(message) {
     const posts_container = document.getElementById("posts-container");
 
     posts_container.innerHTML = `
         <div class="empty-state">
-            <p>No posts available.</p>
+            <p>${message}</p>
         </div>
     `;
 }
@@ -513,12 +532,37 @@ async function fetchPosts() {
         }
         const data = await response.json()
         if (data.length === 0) {
-            return renderEmptyState()
+            return renderEmptyState("No posts available.");
         }
-        const firstSix = data.slice(0, 6);
-        return renderPosts(firstSix);
+        loadedPosts = data.slice(0, 6);
+        const counter = document.getElementById("posts-count");
+        counter.textContent = `${loadedPosts.length} results`;
+        return renderPosts(loadedPosts);
     } catch (error) {
         console.log(error);
         renderErrorState();
     }
+}
+function initializePostsSearch() {
+    const searchInput = document.getElementById("posts-search-input");
+    const clearBtn = document.getElementById("clear-search");
+    const counter = document.getElementById("posts-count");
+    searchInput.addEventListener("input", () => {
+        const searchValue = searchInput.value.trim().toLowerCase();
+        const searchResult = loadedPosts.filter(post => {
+            return post.title.toLowerCase().includes(searchValue);
+        })
+        counter.textContent = `${searchResult.length} results`
+        if (searchResult.length > 0) {
+            renderPosts(searchResult)
+        } else {
+            renderEmptyState("No matching results.");
+        }
+    })
+    clearBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        renderPosts(loadedPosts);
+        counter.textContent = `${loadedPosts.length} results`
+
+    })
 }
