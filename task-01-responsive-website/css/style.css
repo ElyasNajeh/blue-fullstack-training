@@ -208,6 +208,111 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
 }
 
+/* Featured Projects Section */
+
+#projects {
+    background-color: var(--background-color);
+    padding: var(--section-padding) 20px;
+}
+
+#projects h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Project Filters */
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 35px;
+}
+
+.filter-btn {
+    background-color: var(--white-color);
+    color: var(--text-color);
+
+    padding: 10px 20px;
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-color: var(--primary-color);
+}
+
+/* Projects Container */
+
+#projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project Card */
+
+.project-card {
+    background-color: var(--white-color);
+
+    padding: 20px;
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+}
+
+.project-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    color: #555;
+}
+
+.project-category {
+    display: inline-block;
+
+    color: var(--primary-color);
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.project-technology {
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    color: var(--primary-color);
+
+    margin-bottom: 0;
+}
+
 /* Statistics Section */
 
 #statistics {
@@ -509,6 +614,10 @@ footer a:hover {
     form {
         width: 100%;
     }
+
+    #projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 
@@ -549,5 +658,17 @@ footer a:hover {
 
     #hero p {
         font-size: 0.95rem;
+    }
+
+    #projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 8px 14px;
     }
 }

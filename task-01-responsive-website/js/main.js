@@ -3,12 +3,60 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 const prefersReducedMotion =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const projects = [
+    {
+        id: 1,
+        title: "E-Commerce Website",
+        category: "Web",
+        description: "A responsive online shopping platform with product browsing and checkout features.",
+        technology: "HTML, CSS, JavaScript"
+    },
+    {
+        id: 2,
+        title: "Business Management System",
+        category: "Web",
+        description: "A web-based system designed to help businesses manage their daily operations.",
+        technology: "JavaScript, REST API"
+    },
+    {
+        id: 3,
+        title: "Task Management App",
+        category: "Mobile",
+        description: "A mobile application that helps users organize tasks and track their daily progress.",
+        technology: "Flutter, Dart"
+    },
+    {
+        id: 4,
+        title: "Food Delivery App",
+        category: "Mobile",
+        description: "A mobile application for browsing restaurants, ordering meals, and tracking deliveries.",
+        technology: "Flutter, REST API"
+    },
+    {
+        id: 5,
+        title: "Company Dashboard",
+        category: "UI/UX",
+        description: "A modern dashboard interface designed to present company statistics and reports clearly.",
+        technology: "Figma"
+    },
+    {
+        id: 6,
+        title: "Travel Booking Interface",
+        category: "UI/UX",
+        description: "A user-friendly interface for searching destinations and managing travel reservations.",
+        technology: "Figma, Adobe XD"
+    }
+];
+
 function initializeApp() {
     initializeMobileMenu();
     initializeContactForm();
     initializeBackToTop();
     initializeActiveNavigation();
     initializeStatisticsCounter();
+    renderProjects(projects);
+    initializeProjectFilters();
 }
 // Mobile Navigation
 function initializeMobileMenu() {
@@ -365,4 +413,40 @@ function initializeStatisticsCounter() {
     });
 
     observer.observe(statisticsSection);
+}
+function renderProjects(projects) {
+    const projectsResult = document.getElementById("projects-container");
+    projectsResult.innerHTML = projects.map(project => `
+        <article class="project-card">
+            <span class="project-category">${project.category}</span>
+
+            <h3>${project.title}</h3>
+
+            <p>${project.description}</p>
+
+            <p class="project-technology">
+                Technology: ${project.technology}
+            </p>
+        </article>
+        `).join("");
+}
+function initializeProjectFilters() {
+    const buttons = document.querySelectorAll(".filter-btn")
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            buttons.forEach(btn => {
+                btn.classList.remove("active")
+            })
+            button.classList.add("active");
+            const category = button.dataset.category;
+            if (category === "All") {
+                return renderProjects(projects);
+            } else {
+                const filteredArray = projects.filter(e => {
+                    return e.category === category;
+                })
+                return renderProjects(filteredArray)
+            }
+        })
+    })
 }
