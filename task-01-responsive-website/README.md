@@ -6,6 +6,8 @@ This project is part of the Blue Information Technology Full-Stack Training Prog
 
 The website was built using semantic HTML, responsive CSS, and vanilla JavaScript while following accessibility best practices and clean code organization.
 
+The project also includes dynamic content rendering, project filtering, REST API integration, asynchronous data fetching, post searching, UI state handling, and localStorage persistence.
+
 ---
 
 ## Technologies and Tools Used
@@ -148,6 +150,42 @@ git clone <repository-url>
 - QA checklist added.
 
 ---
+
+---
+
+## Task 06
+
+### Dynamic Projects
+
+- Created a local array of project objects.
+- Rendered project cards dynamically using JavaScript.
+- Added project category filters.
+- Implemented filtering for All, Web, Mobile, and UI/UX projects.
+- Added active filter button state.
+
+### REST API Integration
+
+- Integrated JSONPlaceholder Posts API.
+- Used Fetch API with async/await.
+- Validated API responses using `response.ok`.
+- Displayed the first 6 posts dynamically.
+- Added loading state.
+- Added error state with Retry functionality.
+- Added empty state handling.
+
+### Search and Filtering
+
+- Added live search for loaded posts.
+- Implemented case-insensitive title searching.
+- Search works on already loaded data without additional API requests.
+- Added dynamic result count.
+- Added no-matching-results state.
+- Added Clear Search functionality.
+
+### Local Storage
+
+- Stored the selected project category using localStorage.
+- Restored the selected project filter after page refresh.
 
 # Design Approach
 
