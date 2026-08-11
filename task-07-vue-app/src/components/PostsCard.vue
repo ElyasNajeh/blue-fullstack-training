@@ -1,5 +1,7 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 defineProps({
+  id: Number,
   title: String,
   body: String,
 })
@@ -9,6 +11,7 @@ defineProps({
   <article class="post-card">
     <h3>{{ title }}</h3>
     <p>{{ body }}</p>
+    <RouterLink :to="`/posts/${id}`"> View Details </RouterLink>
   </article>
 </template>
 <style scoped>
@@ -58,6 +61,30 @@ defineProps({
 
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+.post-card a {
+  display: inline-block;
+  align-self: flex-start;
+
+  margin-top: auto;
+  padding: 10px 18px;
+
+  background-color: var(--primary-color);
+  color: var(--white-color);
+
+  border-radius: var(--border-radius);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: var(--transition);
+}
+
+.post-card a:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
 /* =========================

@@ -68,6 +68,7 @@ onMounted(() => {
       <PostsCard
         v-for="post in filteredPosts"
         :key="post.id"
+        :id="post.id"
         :title="post.title"
         :body="post.body"
       />
