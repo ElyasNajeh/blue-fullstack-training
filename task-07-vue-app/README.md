@@ -4,7 +4,7 @@
 
 This project is part of the Blue Information Technology Full-Stack Training Program.
 
-The website was originally built using HTML, CSS, and JavaScript, and has now been migrated to Vue.js using reusable components, reactive state, filtering, and API integration.
+The website was originally built using HTML, CSS, and JavaScript, then migrated to Vue.js with reusable components, routing, reactive state, API integration, and reusable composables.
 
 ---
 
@@ -14,6 +14,7 @@ The website was originally built using HTML, CSS, and JavaScript, and has now be
 - CSS3
 - JavaScript
 - Vue.js 3
+- Vue Router
 - Vite
 - JSONPlaceholder API
 - Git & GitHub
@@ -32,11 +33,23 @@ task-07-vue-app/
 │   │
 │   ├── components/
 │   │   ├── SiteHeader.vue
-│   │   ├── HeroSection.vue
-│   │   ├── ServicesSection.vue
+│   │   ├── SiteFooter.vue
 │   │   ├── ServiceCard.vue
-│   │   ├── PostsSection.vue
-│   │   └── SiteFooter.vue
+│   │   └── PostsCard.vue
+│   │
+│   ├── composables/
+│   │   └── usePosts.js
+│   │
+│   ├── router/
+│   │   └── index.js
+│   │
+│   ├── views/
+│   │   ├── HomeView.vue
+│   │   ├── ServicesView.vue
+│   │   ├── PostsView.vue
+│   │   ├── PostDetailsView.vue
+│   │   ├── ContactView.vue
+│   │   └── NotFoundView.vue
 │   │
 │   ├── App.vue
 │   └── main.js
@@ -62,27 +75,39 @@ npm run dev
 
 ## Tasks 01–06
 
-- Built the original website using semantic HTML, CSS, and JavaScript.
-- Added responsive layouts for desktop, tablet, and mobile.
-- Implemented mobile navigation, accessibility features, and form validation.
-- Added dynamic content rendering and category filtering.
-- Integrated JSONPlaceholder API using Fetch and async/await.
-- Added loading, error, retry, and empty states.
-- Added live post search and localStorage persistence.
-- Completed functional, responsive, and cross-browser testing.
+- Built the original website using HTML, CSS, and JavaScript.
+- Added responsive design, accessibility, and form validation.
+- Added dynamic content, filtering, API integration, search, and UI states.
+- Completed functional and responsive testing.
 
 ---
 
 ## Task 07 – Vue.js
 
-- Migrated the website to Vue.js using reusable components.
-- Used `ref()` and `computed()` for reactive state and filtering.
-- Used `defineProps()` and `defineEmits()` for component communication.
-- Added service filtering with active category states.
-- Integrated JSONPlaceholder API using `onMounted()`.
+- Migrated the website to Vue.js.
+- Created reusable Vue components.
+- Used reactive state with `ref()` and `computed()`.
+- Implemented component communication using props and emits.
+- Integrated the JSONPlaceholder API.
+- Added service filtering and live post search.
 - Added loading, error, retry, and empty states.
-- Added live post search using `v-model` and `computed()`.
-- Maintained responsive design across desktop, tablet, and mobile.
+
+---
+
+## Task 08 – Vue Router & Composables
+
+- Added Vue Router and route-based navigation.
+- Created separate Views for application pages.
+- Added active navigation with `RouterLink`.
+- Added lazy-loaded routes.
+- Added a Not Found route.
+- Added dynamic post routes using `/posts/:id`.
+- Created a post details page using route parameters.
+- Added invalid ID and post not found handling.
+- Created a reusable API composable.
+- Reused API logic across post views.
+- Added route-aware post search using query parameters.
+- Preserved search state through URL refresh.
 
 ---
 
@@ -90,12 +115,21 @@ npm run dev
 
 - `ref()`
 - `computed()`
+- `watch()`
 - `onMounted()`
 - `defineProps()`
 - `defineEmits()`
 - `v-for`
 - `v-if`
 - `v-model`
+- `RouterLink`
+- `RouterView`
+- `useRoute()`
+- `useRouter()`
+- Composables
+- Dynamic Routes
+- Query Parameters
+- Lazy Loading
 
 ---
 
