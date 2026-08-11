@@ -1,44 +1,104 @@
-# task-07-vue-app
+# Blue Information Technology Website
 
-This template should help get you started developing with Vue 3 in Vite.
+## Project Description
 
-## Recommended IDE Setup
+This project is part of the Blue Information Technology Full-Stack Training Program.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+The website was originally built using HTML, CSS, and JavaScript, and has now been migrated to Vue.js using reusable components, reactive state, filtering, and API integration.
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Technologies Used
 
-## Customize configuration
+- HTML5
+- CSS3
+- JavaScript
+- Vue.js 3
+- Vite
+- JSONPlaceholder API
+- Git & GitHub
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Project Structure
 
-```sh
-npm install
+```text
+task-07-vue-app/
+│
+├── src/
+│   ├── assets/
+│   │   ├── blue.png
+│   │   └── main.css
+│   │
+│   ├── components/
+│   │   ├── SiteHeader.vue
+│   │   ├── HeroSection.vue
+│   │   ├── ServicesSection.vue
+│   │   ├── ServiceCard.vue
+│   │   ├── PostsSection.vue
+│   │   └── SiteFooter.vue
+│   │
+│   ├── App.vue
+│   └── main.js
+│
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
 ```
 
-### Compile and Hot-Reload for Development
+---
 
-```sh
+## How to Run
+
+```bash
+npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+# Task Summary
 
-### Lint with [ESLint](https://eslint.org/)
+## Tasks 01–06
 
-```sh
-npm run lint
-```
+- Built the original website using semantic HTML, CSS, and JavaScript.
+- Added responsive layouts for desktop, tablet, and mobile.
+- Implemented mobile navigation, accessibility features, and form validation.
+- Added dynamic content rendering and category filtering.
+- Integrated JSONPlaceholder API using Fetch and async/await.
+- Added loading, error, retry, and empty states.
+- Added live post search and localStorage persistence.
+- Completed functional, responsive, and cross-browser testing.
+
+---
+
+## Task 07 – Vue.js
+
+- Migrated the website to Vue.js using reusable components.
+- Used `ref()` and `computed()` for reactive state and filtering.
+- Used `defineProps()` and `defineEmits()` for component communication.
+- Added service filtering with active category states.
+- Integrated JSONPlaceholder API using `onMounted()`.
+- Added loading, error, retry, and empty states.
+- Added live post search using `v-model` and `computed()`.
+- Maintained responsive design across desktop, tablet, and mobile.
+
+---
+
+## Vue Concepts Used
+
+- `ref()`
+- `computed()`
+- `onMounted()`
+- `defineProps()`
+- `defineEmits()`
+- `v-for`
+- `v-if`
+- `v-model`
+
+---
+
+## Challenges
+
+None
