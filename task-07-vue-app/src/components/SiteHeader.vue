@@ -139,6 +139,14 @@ nav a:hover::after {
   color: var(--primary-color);
 }
 
+nav a.router-link-active {
+  color: var(--primary-color);
+}
+
+nav a.router-link-active::after {
+  width: 100%;
+}
+
 /* =========================
    Tablet
 ========================= */

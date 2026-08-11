@@ -1,9 +1,11 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 <template>
   <section id="hero">
     <h1>Blue Information Technology</h1>
     <p>Building modern web solutions for businesses.</p>
-    <a href="#contactus">Get Started</a>
+    <RouterLink to="/contact">Get Started</RouterLink>
   </section>
 </template>
 <style scoped>

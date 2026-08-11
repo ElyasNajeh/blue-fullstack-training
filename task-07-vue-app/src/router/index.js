@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '@/views/HomeView.vue'
-import ServicesView from '@/views/ServicesView.vue'
 import PostsView from '@/views/PostsView.vue'
 import PostDetailsView from '@/views/PostDetailsView.vue'
 import ContactView from '@/views/ContactView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
+
+// Lazy-loaded views
+const ServicesView = () => import('@/views/ServicesView.vue')
+const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
