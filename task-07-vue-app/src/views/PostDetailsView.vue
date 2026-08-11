@@ -1,50 +1,31 @@
 <script setup>
 import { useRoute, RouterLink } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+
+import { useFetch } from '@/composable/usePosts'
 
 const route = useRoute()
 const postId = ref(route.params.id)
 
-const post = ref(null)
-const loading = ref(false)
-const error = ref(false)
-
 const invalidId = ref(false)
-const notFound = ref(false)
 
-const POSTS_API_URL = `https://jsonplaceholder.typicode.com/posts/${postId.value}`
+const { data: post, loading, error, status, load } = useFetch()
 
-async function fetchPost() {
+const notFound = computed(() => {
+  return status.value === 404
+})
+
+function loadPost() {
   if (!/^\d+$/.test(postId.value)) {
     invalidId.value = true
     return
   }
-  try {
-    loading.value = true
-    error.value = false
 
-    const response = await fetch(POSTS_API_URL)
-
-    if (response.status === 404) {
-      notFound.value = true
-      return
-    }
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch data')
-    }
-
-    post.value = await response.json()
-  } catch (err) {
-    error.value = true
-    console.log(err)
-  } finally {
-    loading.value = false
-  }
+  load(`/${postId.value}`)
 }
 
 onMounted(() => {
-  fetchPost()
+  loadPost()
 })
 </script>
 
@@ -75,7 +56,7 @@ onMounted(() => {
       <h3>Something went wrong</h3>
       <p>Failed to load the post. Please try again.</p>
 
-      <button @click="fetchPost">Retry</button>
+      <button @click="loadPost">Retry</button>
     </div>
 
     <!-- Post Details -->

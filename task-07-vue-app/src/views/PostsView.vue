@@ -1,42 +1,35 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
 import PostsCard from '@/components/PostsCard.vue'
 
-const posts = ref([])
-const loading = ref(false)
-const error = ref(false)
-const searchQuery = ref('')
+import { useFetch } from '@/composable/usePosts'
 
-const POSTS_API_URL = 'https://jsonplaceholder.typicode.com/posts?_limit=6'
+const route = useRoute()
+const router = useRouter()
+const searchQuery = ref(route.query.q || '')
+watch(searchQuery, (newValue) => {
+  router.replace({
+    query: {
+      q: newValue,
+    },
+  })
+})
+const { data: posts, loading, error, status, load } = useFetch()
+
+function loadPosts() {
+  load(`/?_limit=6`)
+}
 
 const filteredPosts = computed(() => {
-  return posts.value.filter((post) => {
+  return (posts.value || []).filter((post) => {
     return post.title.toLowerCase().includes(searchQuery.value.toLowerCase())
   })
 })
 
-async function fetchPosts() {
-  try {
-    loading.value = true
-    error.value = false
-
-    const response = await fetch(POSTS_API_URL)
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch data')
-    }
-
-    posts.value = await response.json()
-  } catch (err) {
-    error.value = true
-    console.log(err)
-  } finally {
-    loading.value = false
-  }
-}
-
 onMounted(() => {
-  fetchPosts()
+  loadPosts()
 })
 </script>
 
@@ -56,10 +49,10 @@ onMounted(() => {
     <div v-else-if="error" class="posts-state error-state">
       <h3>Something went wrong</h3>
       <p>Failed to load posts. Please try again.</p>
-      <button @click="fetchPosts">Retry</button>
+      <button @click="loadPosts">Retry</button>
     </div>
 
-    <div v-else-if="posts.length === 0" class="posts-state">
+    <div v-else-if="!posts || posts.length === 0" class="posts-state">
       <h3>No Posts Available</h3>
       <p>There are currently no posts to display.</p>
     </div>
