@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 
 <template>
   <footer>
@@ -6,8 +8,10 @@
 
     <p>Delivering innovative software solutions for businesses worldwide.</p>
 
-    <a href="#hero">Home</a> | <a href="#services">Services</a> | <a href="#aboutus">About</a> |
-    <a href="#contactus">Contact</a>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/services">Services</RouterLink>
+    <RouterLink to="/posts">Posts</RouterLink>
+    <RouterLink to="/contact">Contact Us</RouterLink>
 
     <p>&copy; 2026 Blue Information Technology. All Rights Reserved.</p>
   </footer>

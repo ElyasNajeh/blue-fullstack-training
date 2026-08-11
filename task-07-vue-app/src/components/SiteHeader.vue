@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import blueLogo from '../assets/blue.png'
+import { RouterLink } from 'vue-router'
+
 const isMenuOpen = ref(false)
 </script>
 
@@ -18,10 +20,10 @@ const isMenuOpen = ref(false)
     </button>
   </header>
   <nav id="menu" :class="{ active: isMenuOpen }">
-    <a href="#hero">Home</a>
-    <a href="#services">Services</a>
-    <a href="#aboutus">About</a>
-    <a href="#contactus">Contact Us</a>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/services">Services</RouterLink>
+    <RouterLink to="/posts">Posts</RouterLink>
+    <RouterLink to="/contact">Contact Us</RouterLink>
   </nav>
 </template>
 <style scoped>
