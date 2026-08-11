@@ -1,11 +1,17 @@
-<script setup></script>
+<script setup>
+import SiteHeader from './components/SiteHeader.vue'
+import HeroSection from './components/HeroSection.vue'
+import ServicesSection from './components/ServicesSection.vue'
+import PostsSection from './components/PostsSection.vue'
+import SiteFooter from './components/SiteFooter.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <SiteHeader />
+  <HeroSection />
+  <ServicesSection />
+  <PostsSection />
+  <SiteFooter />
 </template>
 
 <style scoped></style>
