@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import PostsView from '@/views/PostsView.vue'
 import PostDetailsView from '@/views/PostDetailsView.vue'
 import ContactView from '@/views/ContactView.vue'
+import FavoritesView from '@/views/FavoritesView.vue'
 
 // Lazy-loaded views
 const ServicesView = () => import('@/views/ServicesView.vue')
@@ -36,6 +37,11 @@ const router = createRouter({
             path: '/contact',
             name: 'contact',
             component: ContactView
+        },
+        {
+            path: '/favorites',
+            name: 'favorites',
+            component: FavoritesView
         },
         {
             path: '/:pathMatch(.*)*',

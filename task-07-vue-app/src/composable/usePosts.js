@@ -1,10 +1,7 @@
-import { ref } from 'vue'
 const POSTS_API_URL = 'https://jsonplaceholder.typicode.com/posts'
-export function useFetch() {
-    const data = ref(null)
-    const loading = ref(false)
-    const error = ref(false)
-    const status = ref(null)
+
+export function useFetch(data, loading, error, status) {
+
     async function load(url) {
         try {
             loading.value = true
@@ -12,24 +9,25 @@ export function useFetch() {
             status.value = null
 
             const response = await fetch(POSTS_API_URL + url)
+
             status.value = response.status
+
             if (!response.ok) {
                 throw new Error('Failed to fetch data')
             }
 
             data.value = await response.json()
+
         } catch (err) {
             error.value = true
             console.log(err)
+
         } finally {
             loading.value = false
         }
     }
+
     return {
-        data,
-        loading,
-        error,
-        status,
-        load,
+        load
     }
 }

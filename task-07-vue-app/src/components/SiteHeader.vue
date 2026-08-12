@@ -1,9 +1,14 @@
 <script setup>
 import { ref } from 'vue'
-import blueLogo from '../assets/blue.png'
 import { RouterLink } from 'vue-router'
+import { storeToRefs } from 'pinia'
+
+import { usePostStore } from '@/stores/posts'
+import blueLogo from '../assets/blue.png'
 
 const isMenuOpen = ref(false)
+const postStore = usePostStore()
+const { favoriteCnt } = storeToRefs(postStore)
 </script>
 
 <template>
@@ -24,6 +29,7 @@ const isMenuOpen = ref(false)
     <RouterLink to="/services">Services</RouterLink>
     <RouterLink to="/posts">Posts</RouterLink>
     <RouterLink to="/contact">Contact Us</RouterLink>
+    <RouterLink to="/favorites">Favorites {{ favoriteCnt }}</RouterLink>
   </nav>
 </template>
 <style scoped>
