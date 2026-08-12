@@ -18,7 +18,7 @@ The website was originally built using HTML, CSS, and JavaScript, then migrated 
 - Vite
 - JSONPlaceholder API
 - Git & GitHub
-
+- Pinia
 ---
 
 ## Project Structure
@@ -27,33 +27,39 @@ The website was originally built using HTML, CSS, and JavaScript, then migrated 
 task-07-vue-app/
 │
 ├── src/
-│   ├── assets/
-│   │   ├── blue.png
-│   │   └── main.css
-│   │
-│   ├── components/
-│   │   ├── SiteHeader.vue
-│   │   ├── SiteFooter.vue
-│   │   ├── ServiceCard.vue
-│   │   └── PostsCard.vue
-│   │
-│   ├── composables/
-│   │   └── usePosts.js
-│   │
-│   ├── router/
-│   │   └── index.js
-│   │
-│   ├── views/
-│   │   ├── HomeView.vue
-│   │   ├── ServicesView.vue
-│   │   ├── PostsView.vue
-│   │   ├── PostDetailsView.vue
-│   │   ├── ContactView.vue
-│   │   └── NotFoundView.vue
-│   │
-│   ├── App.vue
-│   └── main.js
+├── assets/
+│   ├── blue.png
+│   └── main.css
 │
+├── components/
+│   ├── SiteHeader.vue
+│   ├── SiteFooter.vue
+│   ├── ServiceCard.vue
+│   ├── PostsCard.vue
+│   ├── PostDetails.vue
+│   └── FavoritesPosts.vue
+│
+├── composables/
+│   └── usePosts.js
+│
+├── router/
+│   └── index.js
+│
+├── stores/
+│   └── posts.js
+│
+├── views/
+│   ├── HomeView.vue
+│   ├── ServicesView.vue
+│   ├── PostsView.vue
+│   ├── PostDetailsView.vue
+│   ├── FavoritesView.vue
+│   ├── CreatePostView.vue
+│   ├── ContactView.vue
+│   └── NotFoundView.vue
+│
+├── App.vue
+└── main.js
 ├── index.html
 ├── package.json
 ├── vite.config.js
@@ -111,6 +117,28 @@ npm run dev
 
 ---
 
+## Task 09 – Pinia State Management & Post Creation
+
+- Added Pinia for centralized application state management.
+- Moved posts, post details, loading, error, and status states to a Pinia store.
+- Separated state for the posts list, post details, and post creation requests.
+- Added a favorites feature using shared Pinia state.
+- Added favorite and remove-from-favorite functionality across post views.
+- Added a computed favorites count.
+- Persisted favorite post IDs using localStorage.
+- Added a dedicated Favorites page for displaying saved posts.
+- Added navigation to the Favorites page with the current favorites count.
+- Added a Create Post page using `v-model` for form state.
+- Added field-level validation for title, body, and user ID.
+- Added minimum-length and positive-number validation.
+- Added a live character counter for the post body.
+- Added POST request support to the reusable posts composable.
+- Added loading and disabled states while creating a post.
+- Added success feedback with the returned post ID.
+- Added error handling and retry functionality while preserving form data.
+- Reset the form only after a successful request.
+- Tested both successful and failed post submission flows.
+
 ## Vue Concepts Used
 
 - `ref()`
@@ -131,6 +159,16 @@ npm run dev
 - Query Parameters
 - Lazy Loading
 
+- Pinia
+- `defineStore()`
+- `storeToRefs()`
+- Shared State
+- Computed Store State
+- localStorage Persistence
+- Form Validation
+- Form Submission
+- POST Requests
+- `async/await`
 ---
 
 ## Challenges
