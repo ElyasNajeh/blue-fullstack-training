@@ -9,6 +9,7 @@ import FavoritesView from '@/views/FavoritesView.vue'
 // Lazy-loaded views
 const ServicesView = () => import('@/views/ServicesView.vue')
 const NotFoundView = () => import('@/views/NotFoundView.vue')
+const CreatePostView = () => import('@/views/CreatePostView.vue')
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
             path: '/posts',
             name: 'posts',
             component: PostsView
+        },
+        {
+            path: '/posts/create',
+            name: 'create-post',
+            component: CreatePostView
         },
         {
             path: '/posts/:id',

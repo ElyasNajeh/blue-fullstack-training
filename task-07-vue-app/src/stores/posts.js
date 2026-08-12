@@ -20,6 +20,12 @@ export const usePostStore = defineStore('post', () => {
     const postNotFound = ref(false)
 
 
+    // Create Post
+    const createdPost = ref(null)
+    const createPostLoading = ref(false)
+    const createPostError = ref(false)
+    const createPostStatus = ref(null)
+
     // Favorites
     const favoriteIDs = ref(
         JSON.parse(localStorage.getItem('favoriteIDs')) || []
@@ -55,6 +61,12 @@ export const usePostStore = defineStore('post', () => {
         postStatus,
         postInvalid,
         postNotFound,
+
+        // create posts
+        createdPost,
+        createPostLoading,
+        createPostError,
+        createPostStatus,
 
         // Favorites
         favoriteIDs,

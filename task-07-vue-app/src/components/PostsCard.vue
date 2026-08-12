@@ -34,7 +34,9 @@ const emit = defineEmits(['retry'])
   <section id="posts">
     <h2>Latest Posts</h2>
 
-    <div class="favorites-navigation">
+    <div class="posts-navigation">
+      <RouterLink to="/posts/create" class="create-post-link"> Create Post </RouterLink>
+
       <RouterLink to="/favorites" class="favorites-link">
         Favorites
         <span>{{ favoriteCnt }}</span>
@@ -113,13 +115,45 @@ const emit = defineEmits(['retry'])
    Favorites Navigation
 ========================= */
 
-.favorites-navigation {
+/* =========================
+   Posts Navigation
+========================= */
+
+.posts-navigation {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 
   margin-bottom: 20px;
 }
 
+.create-post-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+
+  background-color: var(--primary-color);
+  color: var(--white-color);
+
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: var(--transition);
+}
+
+.create-post-link:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+
+  transform: translateY(-2px);
+}
 .favorites-link {
   display: inline-flex;
   align-items: center;
@@ -558,6 +592,10 @@ const emit = defineEmits(['retry'])
     padding: 11px 14px;
 
     font-size: 0.9rem;
+  }
+  .posts-navigation {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 </style>
