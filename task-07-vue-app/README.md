@@ -4,7 +4,7 @@
 
 This project is part of the Blue Information Technology Full-Stack Training Program.
 
-The website was originally built using HTML, CSS, and JavaScript, then migrated to Vue.js with reusable components, routing, reactive state, API integration, and reusable composables.
+The website was originally built using HTML, CSS, and JavaScript, then migrated to Vue.js with reusable components, routing, reactive state, API integration, Pinia state management, and automated testing.
 
 ---
 
@@ -15,10 +15,14 @@ The website was originally built using HTML, CSS, and JavaScript, then migrated 
 - JavaScript
 - Vue.js 3
 - Vue Router
+- Pinia
 - Vite
+- Vitest
+- Vue Test Utils
+- jsdom
 - JSONPlaceholder API
 - Git & GitHub
-- Pinia
+
 ---
 
 ## Project Structure
@@ -27,39 +31,46 @@ The website was originally built using HTML, CSS, and JavaScript, then migrated 
 task-07-vue-app/
 │
 ├── src/
-├── assets/
-│   ├── blue.png
-│   └── main.css
+│   ├── __tests__/
+│   │   ├── postsStore.spec.js
+│   │   ├── PostsCard.spec.js
+│   │   └── CreatePostView.spec.js
+│   │
+│   ├── assets/
+│   │   ├── blue.png
+│   │   └── main.css
+│   │
+│   ├── components/
+│   │   ├── SiteHeader.vue
+│   │   ├── SiteFooter.vue
+│   │   ├── ServiceCard.vue
+│   │   ├── PostsCard.vue
+│   │   ├── PostDetails.vue
+│   │   └── FavoritesPosts.vue
+│   │
+│   ├── composable/
+│   │   └── usePosts.js
+│   │
+│   ├── router/
+│   │   └── index.js
+│   │
+│   ├── stores/
+│   │   └── posts.js
+│   │
+│   ├── views/
+│   │   ├── HomeView.vue
+│   │   ├── ServicesView.vue
+│   │   ├── PostsView.vue
+│   │   ├── PostDetailsView.vue
+│   │   ├── FavoritesView.vue
+│   │   ├── CreatePostView.vue
+│   │   ├── ContactView.vue
+│   │   └── NotFoundView.vue
+│   │
+│   ├── App.vue
+│   └── main.js
 │
-├── components/
-│   ├── SiteHeader.vue
-│   ├── SiteFooter.vue
-│   ├── ServiceCard.vue
-│   ├── PostsCard.vue
-│   ├── PostDetails.vue
-│   └── FavoritesPosts.vue
-│
-├── composables/
-│   └── usePosts.js
-│
-├── router/
-│   └── index.js
-│
-├── stores/
-│   └── posts.js
-│
-├── views/
-│   ├── HomeView.vue
-│   ├── ServicesView.vue
-│   ├── PostsView.vue
-│   ├── PostDetailsView.vue
-│   ├── FavoritesView.vue
-│   ├── CreatePostView.vue
-│   ├── ContactView.vue
-│   └── NotFoundView.vue
-│
-├── App.vue
-└── main.js
+├── .env.example
 ├── index.html
 ├── package.json
 ├── vite.config.js
@@ -70,8 +81,21 @@ task-07-vue-app/
 
 ## How to Run
 
+Install dependencies:
+
 ```bash
 npm install
+```
+
+Create a `.env` file:
+
+```env
+VITE_API_BASE_URL=https://jsonplaceholder.typicode.com
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
@@ -103,15 +127,12 @@ npm run dev
 ## Task 08 – Vue Router & Composables
 
 - Added Vue Router and route-based navigation.
-- Created separate Views for application pages.
+- Created separate views for application pages.
 - Added active navigation with `RouterLink`.
-- Added lazy-loaded routes.
-- Added a Not Found route.
+- Added lazy-loaded routes and a Not Found route.
 - Added dynamic post routes using `/posts/:id`.
-- Created a post details page using route parameters.
 - Added invalid ID and post not found handling.
 - Created a reusable API composable.
-- Reused API logic across post views.
 - Added route-aware post search using query parameters.
 - Preserved search state through URL refresh.
 
@@ -119,25 +140,93 @@ npm run dev
 
 ## Task 09 – Pinia State Management & Post Creation
 
-- Added Pinia for centralized application state management.
-- Moved posts, post details, loading, error, and status states to a Pinia store.
-- Separated state for the posts list, post details, and post creation requests.
-- Added a favorites feature using shared Pinia state.
-- Added favorite and remove-from-favorite functionality across post views.
-- Added a computed favorites count.
-- Persisted favorite post IDs using localStorage.
-- Added a dedicated Favorites page for displaying saved posts.
-- Added navigation to the Favorites page with the current favorites count.
-- Added a Create Post page using `v-model` for form state.
-- Added field-level validation for title, body, and user ID.
-- Added minimum-length and positive-number validation.
-- Added a live character counter for the post body.
-- Added POST request support to the reusable posts composable.
-- Added loading and disabled states while creating a post.
-- Added success feedback with the returned post ID.
-- Added error handling and retry functionality while preserving form data.
-- Reset the form only after a successful request.
-- Tested both successful and failed post submission flows.
+- Added Pinia for shared application state.
+- Added favorites with localStorage persistence.
+- Added a Favorites page and favorites counter.
+- Added a Create Post form with validation.
+- Added POST request handling with loading, success, error, retry, and form reset states.
+
+---
+
+## Task 10 – Frontend Testing & QA
+
+- Added automated testing using Vitest and Vue Test Utils.
+- Tested favorites, localStorage persistence, PostsCard behavior, and Create Post validation/submission.
+- Added environment-based API configuration using `VITE_API_BASE_URL`.
+- Verified the production build and preview.
+- Completed final frontend regression testing.
+
+---
+
+# Frontend Handover - Task 10
+
+## Overview
+
+The frontend is built with Vue.js and includes routing, Pinia state management, reusable components, API integration, favorites, post creation, and automated testing.
+
+## Structure
+
+- `components/` – Reusable UI components.
+- `views/` – Route-level pages.
+- `stores/` – Pinia shared state.
+- `composable/` – API request logic.
+- `router/` – Application routes.
+- `__tests__/` – Automated tests.
+
+## Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create the environment configuration:
+
+```env
+VITE_API_BASE_URL=https://jsonplaceholder.typicode.com
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Testing
+
+Run all automated tests:
+
+```bash
+npm test -- --run
+```
+
+Tests cover favorites, localStorage persistence, PostsCard behavior, and Create Post validation/submission.
+
+## Production
+
+Create the production build:
+
+```bash
+npm run build
+```
+
+Run the production preview:
+
+```bash
+npm run preview
+```
+
+## Known Limitations
+
+JSONPlaceholder simulates post creation and does not permanently save created posts.
+
+## Final QA
+
+- Regression QA: Passed
+- Known Issues: None
+
+---
 
 ## Vue Concepts Used
 
@@ -158,17 +247,19 @@ npm run dev
 - Dynamic Routes
 - Query Parameters
 - Lazy Loading
-
 - Pinia
 - `defineStore()`
 - `storeToRefs()`
 - Shared State
-- Computed Store State
 - localStorage Persistence
 - Form Validation
-- Form Submission
 - POST Requests
 - `async/await`
+- Vitest
+- Vue Test Utils
+- API Mocking
+- Environment Variables
+
 ---
 
 ## Challenges
