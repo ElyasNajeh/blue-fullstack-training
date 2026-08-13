@@ -1,4 +1,5 @@
-const POSTS_API_URL = 'https://jsonplaceholder.typicode.com/posts'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const POSTS_ENDPOINT = '/posts'
 
 export function useFetch(data, loading, error, status) {
     async function load(url) {
@@ -7,7 +8,7 @@ export function useFetch(data, loading, error, status) {
             error.value = false
             status.value = null
 
-            const response = await fetch(POSTS_API_URL + url)
+            const response = await fetch(API_BASE_URL + POSTS_ENDPOINT + url)
 
             status.value = response.status
 
@@ -30,7 +31,7 @@ export function useFetch(data, loading, error, status) {
             error.value = false
             status.value = null
 
-            const response = await fetch(POSTS_API_URL, {
+            const response = await fetch(API_BASE_URL + POSTS_ENDPOINT, {
                 method: 'POST',
 
                 headers: {

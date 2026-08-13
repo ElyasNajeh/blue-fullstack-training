@@ -8,6 +8,8 @@ import { usePostStore } from '@/stores/posts'
 
 const createMock = vi.fn()
 
+let pinia
+
 
 vi.mock('@/composable/usePosts', () => ({
     useFetch: () => ({
@@ -22,13 +24,13 @@ describe('CreatePostView', () => {
         localStorage.clear()
 
         createMock.mockReset()
+
+        pinia = createPinia()
+        setActivePinia(pinia)
     })
 
 
     it('blocks empty submission and displays field validation errors', async () => {
-
-        const pinia = createPinia()
-        setActivePinia(pinia)
 
         const wrapper = mount(CreatePostView, {
             global: {
@@ -44,16 +46,11 @@ describe('CreatePostView', () => {
         expect(wrapper.text()).toContain('Body is required.')
         expect(wrapper.text()).toContain('User ID is required.')
 
-
         expect(createMock).not.toHaveBeenCalled()
     })
 
 
     it('submits valid data and displays success message', async () => {
-
-        const pinia = createPinia()
-        setActivePinia(pinia)
-
 
         createMock.mockImplementation(async (postData) => {
 
@@ -88,7 +85,6 @@ describe('CreatePostView', () => {
 
 
         expect(createMock).toHaveBeenCalledTimes(1)
-
 
         expect(createMock).toHaveBeenCalledWith({
             title: 'My Test Post',

@@ -20,6 +20,10 @@ describe('PostsCard', () => {
             history: createMemoryHistory(),
             routes: [
                 {
+                    path: '/',
+                    component: { template: '<div>Home</div>' },
+                },
+                {
                     path: '/posts/:id',
                     component: { template: '<div>Post Details</div>' },
                 },
