@@ -1,58 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blue Full-Stack Training
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains my progress throughout the Blue Information Technology Full-Stack Training program.
 
-## About Laravel
+The training started with frontend fundamentals using HTML, CSS, and JavaScript, then moved to Vue.js for building component-based frontend applications. Starting from Task 11, the training moves into backend development using PHP and Laravel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Training Progress
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Tasks 01–06: HTML, CSS & JavaScript
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The first six tasks focused on frontend fundamentals and building responsive web pages using HTML, CSS, and JavaScript.
 
-## Learning Laravel
+Main topics included:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Semantic HTML
+- CSS styling and responsive design
+- JavaScript fundamentals
+- DOM manipulation
+- Event handling
+- Working with data and APIs
+- Building interactive frontend features
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tasks 07–10: Vue.js
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Tasks 07–10 introduced Vue.js and focused on building frontend applications using a component-based architecture.
 
-## Agentic Development
+Main topics included:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- Vue 3 fundamentals
+- Components and props
+- Vue Router
+- Reactive state
+- API integration
+- Loading and error states
+- Reusable components
+- Pinia state management
 
-```bash
-composer require laravel/boost --dev
+### Task 11: Laravel Backend Foundations
 
-php artisan boost:install
-```
+Task 11 introduces backend development using PHP and Laravel.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The task focuses on understanding the Laravel project structure, creating API routes, returning JSON responses, organizing logic using controllers, working with dynamic route parameters, and validating incoming HTTP requests.
 
-## Contributing
+### Laravel Project Structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### `app/`
 
-## Code of Conduct
+This contain approximately the main project ,the main backend and (Models,Controllers) .
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### `app/Http/Controllers/`
 
-## Security Vulnerabilities
+Controllers Responsible is to return resonse to frontend .
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### `routes/`
 
-## License
+When the frontend send the request to specific end-point in backend , the routes direct the request to the suitable controller so controller can deal with request .
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### `config/`
+
+the config contain general settings like cache, connection with database,mails.
+
+#### `database/`
+
+this file who managed database like migrations (to create and alter tables) and seeders to add mock data, then in general to manage and adminstrate all things belong to databases .
+
+#### `public/`
+
+like entry point to all the program due to we can't share sensitive folders .
+
+#### `storage/`
+
+contains files generated or used while the application is running, such as logs, cache,
+
+#### `tests/`
+
+to write automated tests and run it .
+
+#### `.env` and `.env.example`
+
+env represent Environment variables we can't put it in the code like secret-key etc.. , and some variables may be changed 
+in production so we can change it very quickly, and the other thing, me as developer when i participate in project i don't have any idea waht is the environment variables so i see the .env .example and copy the file so i can add the real data. 
+
+#### Artisan
+
+like commands , so i can tell laravel what to do from these commands, like start the server to be in development , or create files in certain places.
+
+#### Composer
+
+like npm in js, so we can manage the packages from Composer.
