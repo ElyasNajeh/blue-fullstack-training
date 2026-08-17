@@ -87,3 +87,31 @@ like commands , so i can tell laravel what to do from these commands, like start
 #### Composer
 
 like npm in js, so we can manage the packages from Composer.
+
+### Task 12: Laravel Database & CRUD API
+
+Task 12 continues backend development using Laravel and introduces database integration with MySQL.
+
+The task focuses on connecting Laravel with a MySQL database, creating database tables using migrations, working with Eloquent models, implementing CRUD API operations, validating requests, handling not-found responses, and adding sample data using seeders.
+
+Main topics included:
+
+- MySQL database connection
+- Laravel migrations
+- Eloquent models
+- Mass assignment and fillable fields
+- Database-backed REST API
+- CRUD operations
+- Request validation
+- HTTP status codes and JSON responses
+- 404 response handling
+- Database seeders
+
+#### Posts API Endpoints
+
+- `GET /api/posts` - Return all posts.
+- `GET /api/posts/{id}` - Return a post by ID.
+- `POST /api/posts` - Create a new post.
+- `PUT /api/posts/{id}` - Update an existing post.
+- `DELETE /api/posts/{id}` - Delete a post.
+
