@@ -115,3 +115,44 @@ Main topics included:
 - `PUT /api/posts/{id}` - Update an existing post.
 - `DELETE /api/posts/{id}` - Delete a post.
 
+### Task 13: Laravel Relationships, Filtering & Pagination
+
+Task 13 extends the Laravel REST API by introducing relationships between posts and categories and improving how API data is retrieved and returned.
+
+The task focuses on creating categories, defining Eloquent relationships, using API Resources, filtering and sorting posts, implementing pagination, and improving query efficiency using eager loading.
+
+Main topics included:
+
+- Categories table, model, and seeder
+- Database foreign keys
+- Eloquent `hasMany` and `belongsTo` relationships
+- Category validation using `category_id`
+- Categories API
+- Laravel API Resources
+- Filtering posts by title, status, and category
+- Sorting by title and creation date
+- Ascending and descending sorting
+- Laravel pagination
+- Controlled `per_page` values
+- Eager loading
+- Avoiding the N+1 query problem
+
+#### Categories API Endpoints
+
+- `GET /api/categories` - Return all categories.
+- `POST /api/categories` - Create a new category.
+
+#### Posts Query Parameters
+
+The posts endpoint supports filtering, sorting, and pagination using query parameters.
+
+Examples:
+
+- `/api/posts?search=laravel`
+- `/api/posts?status=published`
+- `/api/posts?category_id=2`
+- `/api/posts?sort=title&direction=asc`
+- `/api/posts?sort=created_at&direction=desc`
+- `/api/posts?per_page=10&page=2`
+
+Filters, sorting, and pagination can also be combined in the same request.
