@@ -7,6 +7,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/health', [HealthController::class, 'health']);
 
@@ -19,9 +20,21 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
-Route::post('/posts', [PostController::class, 'store']);
-Route::put('/posts/{id}', [PostController::class, 'update']);
-Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+Route::post('/posts', [PostController::class, 'store'])
+    ->middleware('auth:sanctum');
+
+Route::put('/posts/{id}', [PostController::class, 'update'])
+    ->middleware('auth:sanctum');
+
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])
+    ->middleware('auth:sanctum');
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/me', [AuthController::class, 'me'])
+    ->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth:sanctum');

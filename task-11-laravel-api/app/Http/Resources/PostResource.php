@@ -15,6 +15,10 @@ class PostResource extends JsonResource
             'body' => $this->body,
             'status' => $this->status,
             'category' => new CategoryResource($this->category),
+            'author' => $this->user ? [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+            ] : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

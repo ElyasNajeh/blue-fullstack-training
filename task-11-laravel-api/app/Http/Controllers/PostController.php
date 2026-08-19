@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Resources\PostResource;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::with('category');
+        $query = Post::with(['category', 'user']);
 
         if ($request->has('search')) {
             $query->where(
@@ -71,7 +72,7 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $post = Post::create($validated);
+        $post = $request->user()->posts()->create($validated);
 
         return (new PostResource($post))
             ->response()
@@ -86,6 +87,7 @@ class PostController extends Controller
                 'message' => 'Post not found'
             ], 404);
         }
+        Gate::authorize('update', $post);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -109,7 +111,7 @@ class PostController extends Controller
                 'message' => 'Post not found'
             ], 404);
         }
-
+        Gate::authorize('delete', $post);
         $post->delete();
 
         return response()->json([

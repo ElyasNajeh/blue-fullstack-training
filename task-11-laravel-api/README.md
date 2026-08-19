@@ -156,3 +156,71 @@ Examples:
 - `/api/posts?per_page=10&page=2`
 
 Filters, sorting, and pagination can also be combined in the same request.
+
+### Task 14: Laravel Authentication & Authorization
+
+Task 14 extends the Laravel REST API by adding token-based authentication and authorization using Laravel Sanctum.
+
+The task focuses on user registration and login, issuing and revoking API tokens, protecting write operations, assigning posts to authenticated users, enforcing post ownership using Laravel Policies, and returning safe author information through API Resources.
+
+Main topics included:
+
+- Laravel Sanctum authentication
+- User registration and login
+- Secure password hashing
+- Personal access tokens
+- Bearer token authentication
+- Protected API routes using `auth:sanctum`
+- Authenticated user retrieval
+- Token revocation and logout
+- Post ownership using `user_id`
+- User and Post Eloquent relationships
+- Automatic post ownership assignment
+- Laravel Policies
+- Authorization for update and delete operations
+- `401 Unauthorized` handling
+- `403 Forbidden` handling
+- Safe author data in API Resources
+- Eager loading of post relationships
+
+#### Authentication API Endpoints
+
+- `POST /api/register` - Register a new user.
+- `POST /api/login` - Authenticate a user and return an access token.
+- `GET /api/me` - Return the currently authenticated user.
+- `POST /api/logout` - Revoke the current access token.
+
+#### Protected Posts API Endpoints
+
+The post read endpoints remain publicly accessible:
+
+- `GET /api/posts` - Return posts.
+- `GET /api/posts/{id}` - Return a post by ID.
+
+The following write operations require a valid Sanctum Bearer token:
+
+- `POST /api/posts` - Create a post for the authenticated user.
+- `PUT /api/posts/{id}` - Update a post only if the authenticated user owns it.
+- `DELETE /api/posts/{id}` - Delete a post only if the authenticated user owns it.
+
+#### Post Ownership
+
+Each newly created post is automatically assigned to the authenticated user. The API does not accept an arbitrary `user_id` from the client when creating a post.
+
+The ownership relationship is defined using Eloquent:
+
+- User `hasMany` Posts.
+- Post `belongsTo` User.
+
+Laravel Policies are used to ensure that users can only update or delete their own posts.
+
+#### Post API Resource
+
+Post responses include useful category and author information while avoiding sensitive user data.
+
+Author information includes only safe fields such as:
+
+- `id`
+- `name`
+
+Sensitive information such as passwords, remember tokens, and access tokens is not exposed in API responses.
