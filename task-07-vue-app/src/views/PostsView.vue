@@ -10,7 +10,7 @@ import { usePostStore } from '@/stores/posts'
 
 const route = useRoute()
 const router = useRouter()
-
+const deleteError = ref('')
 const postStore = usePostStore()
 
 const {
@@ -20,7 +20,8 @@ const {
   postsStatus: status,
 } = storeToRefs(postStore)
 
-const { load } = useFetch(posts, loading, error, status)
+// أضفنا remove
+const { load, remove } = useFetch(posts, loading, error, status)
 
 const searchQuery = ref(route.query.q || '')
 
@@ -33,7 +34,26 @@ watch(searchQuery, (newValue) => {
 })
 
 function loadPosts() {
-  load(`/?_limit=6`)
+  load('?per_page=8')
+}
+
+async function deletePost(id) {
+  deleteError.value = ''
+
+  const result = await remove(id)
+
+  if (result.success) {
+    posts.value = posts.value.filter((post) => post.id !== id)
+    return
+  }
+
+  if (result.status === 403) {
+    deleteError.value = 'You can only delete your own posts.'
+  } else if (result.status === 401) {
+    deleteError.value = 'You must be logged in to delete a post.'
+  } else {
+    deleteError.value = 'Failed to delete post. Please try again.'
+  }
 }
 
 const filteredPosts = computed(() => {
@@ -53,6 +73,9 @@ onMounted(() => {
     :posts="filteredPosts"
     :loading="loading"
     :error="error"
+    :delete-error="deleteError"
     @retry="loadPosts"
+    @delete="deletePost"
+    @clear-delete-error="deleteError = ''"
   />
 </template>

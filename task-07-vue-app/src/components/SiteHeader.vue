@@ -1,14 +1,28 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
 import { usePostStore } from '@/stores/posts'
+import { useAuthStore } from '@/stores/auth'
 import blueLogo from '../assets/blue.png'
 
 const isMenuOpen = ref(false)
+const router = useRouter()
+
 const postStore = usePostStore()
 const { favoriteCnt } = storeToRefs(postStore)
+
+const authStore = useAuthStore()
+const { user, isAuthenticated } = storeToRefs(authStore)
+
+async function handleLogout() {
+  const success = await authStore.logout()
+
+  if (success) {
+    router.push('/login')
+  }
+}
 </script>
 
 <template>
@@ -30,6 +44,15 @@ const { favoriteCnt } = storeToRefs(postStore)
     <RouterLink to="/posts">Posts</RouterLink>
     <RouterLink to="/contact">Contact Us</RouterLink>
     <RouterLink to="/favorites">Favorites {{ favoriteCnt }}</RouterLink>
+    <RouterLink v-if="!isAuthenticated" to="/login"> Login </RouterLink>
+
+    <template v-else>
+      <span class="auth-user">
+        {{ user?.name }}
+      </span>
+
+      <button class="logout-button" @click="handleLogout">Logout</button>
+    </template>
   </nav>
 </template>
 <style scoped>
@@ -152,6 +175,30 @@ nav a.router-link-active {
 nav a.router-link-active::after {
   width: 100%;
 }
+.auth-user {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.logout-button {
+  padding: 7px 14px;
+
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+
+  background: transparent;
+  color: var(--white-color);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logout-button:hover {
+  background-color: var(--primary-color);
+}
 
 /* =========================
    Tablet
@@ -248,6 +295,35 @@ nav a.router-link-active::after {
   /* ما بدنا underline animation داخل mobile menu */
   #menu a::after {
     display: none;
+  }
+  #menu .auth-user {
+    display: block;
+    padding: 15px 20px;
+
+    color: var(--text-color);
+    font-weight: 600;
+
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  #menu .logout-button {
+    display: block;
+
+    width: 100%;
+    padding: 15px 20px;
+
+    border: none;
+    border-radius: 0;
+
+    color: var(--text-color);
+    background: var(--white-color);
+
+    text-align: left;
+  }
+
+  #menu .logout-button:hover {
+    color: var(--primary-color);
+    background-color: var(--background-color);
   }
 }
 

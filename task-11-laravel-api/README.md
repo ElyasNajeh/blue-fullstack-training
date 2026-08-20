@@ -224,3 +224,87 @@ Author information includes only safe fields such as:
 - `name`
 
 Sensitive information such as passwords, remember tokens, and access tokens is not exposed in API responses.
+### Task 15: Vue & Laravel Full-Stack Integration
+
+Task 15 connects the Vue.js frontend with the Laravel backend API to create a complete full-stack application.
+
+The task focuses on replacing temporary frontend data with real Laravel API data, integrating authentication using Laravel Sanctum, loading posts and categories from the backend, and connecting create, update, and delete operations between Vue and Laravel.
+
+Main topics included:
+
+- Vue and Laravel API integration
+- Environment-based API configuration
+- Laravel Sanctum authentication
+- Login and logout integration
+- Authenticated user state using Pinia
+- Bearer token authentication
+- Protected frontend requests
+- Loading posts from Laravel
+- Loading categories from Laravel
+- Creating posts from Vue
+- Updating existing posts
+- Deleting posts
+- Post ownership handling
+- Backend validation and error handling
+- Handling `401 Unauthorized` responses
+- Handling `403 Forbidden` responses
+- Loading, error, and success states
+- Vue Router integration for create and edit pages
+
+#### Authentication Integration
+
+The Vue application uses the Laravel authentication endpoints to log users in, retrieve the authenticated user, and log users out.
+
+The authentication state is managed using Pinia, and the Sanctum access token is included in protected API requests using the `Authorization: Bearer` header.
+
+#### Posts Integration
+
+Posts are loaded directly from the Laravel `/api/posts` endpoint instead of temporary frontend data.
+
+The frontend displays post information returned by the backend, including:
+
+- Title
+- Body
+- Status
+- Category
+- Author
+
+#### Categories Integration
+
+Categories are loaded from the Laravel `/api/categories` endpoint and used dynamically in the Create Post and Edit Post forms.
+
+This avoids maintaining a separate hardcoded category list in the frontend.
+
+#### Create Post
+
+Authenticated users can create new posts from the Vue application.
+
+The Create Post form sends the post title, body, status, and category to the Laravel API using an authenticated request.
+
+The interface handles successful creation, authentication errors, and request failures.
+
+#### Update Post
+
+Posts can be updated through the Vue Edit Post view.
+
+The existing post data is loaded into the form, including its title, body, status, and category.
+
+Only the owner of a post is allowed to update it. Unauthorized users are shown an access-denied state instead of the edit form.
+
+#### Delete Post
+
+Authenticated users can delete their own posts directly from the Posts view.
+
+Laravel Policies enforce ownership on the backend. If a user attempts to delete another user's post, the API returns `403 Forbidden`, and the frontend displays an appropriate message instead of treating the operation as successful.
+
+#### Authorization Handling
+
+Frontend authorization improves the user experience by displaying appropriate states and messages, while Laravel remains responsible for enforcing the actual security rules on the backend.
+
+Protected operations include:
+
+- Creating posts
+- Updating owned posts
+- Deleting owned posts
+
+The frontend handles authentication and authorization failures without exposing passwords, secret keys, or hardcoded access tokens.

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import { usePostStore } from '@/stores/posts'
@@ -15,13 +15,16 @@ const {
 } = storeToRefs(postStore)
 
 const { create } = useFetch(createdPost, loading, error, status)
+
 const title = ref('')
 const body = ref('')
-const userId = ref('')
+
+const statusValue = ref('published')
+const categories = ref([])
+const categoryId = ref('')
 
 const titleError = ref('')
 const bodyError = ref('')
-const userIdError = ref('')
 
 function validateTitle() {
   if (!title.value.trim()) {
@@ -53,27 +56,13 @@ function validateBody() {
   return true
 }
 
-function validateUserId() {
-  if (!userId.value) {
-    userIdError.value = 'User ID is required.'
-    return false
-  }
-
-  if (Number(userId.value) <= 0) {
-    userIdError.value = 'User ID must be a positive number.'
-    return false
-  }
-
-  userIdError.value = ''
-  return true
-}
 function validateForm() {
   const isTitleValid = validateTitle()
   const isBodyValid = validateBody()
-  const isUserIdValid = validateUserId()
 
-  return isTitleValid && isBodyValid && isUserIdValid
+  return isTitleValid && isBodyValid
 }
+
 async function handleSubmit() {
   createdPost.value = null
 
@@ -84,15 +73,33 @@ async function handleSubmit() {
   const success = await create({
     title: title.value.trim(),
     body: body.value.trim(),
-    userId: Number(userId.value),
+    status: statusValue.value,
+    category_id: categoryId.value,
   })
 
   if (success) {
     title.value = ''
     body.value = ''
-    userId.value = ''
   }
 }
+async function loadCategories() {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/categories`)
+
+    if (!response.ok) {
+      throw new Error('Failed to load categories')
+    }
+
+    const result = await response.json()
+
+    categories.value = result.data
+  } catch (err) {
+    console.log(err)
+  }
+}
+onMounted(() => {
+  loadCategories()
+})
 </script>
 
 <template>
@@ -100,6 +107,7 @@ async function handleSubmit() {
     <h1>Create Post</h1>
 
     <form class="create-post-form" @submit.prevent="handleSubmit">
+      <!-- Title -->
       <div class="form-group">
         <label for="title">Title</label>
 
@@ -116,6 +124,8 @@ async function handleSubmit() {
           {{ titleError }}
         </p>
       </div>
+
+      <!-- Body -->
       <div class="form-group">
         <label for="body">Body</label>
 
@@ -138,25 +148,25 @@ async function handleSubmit() {
         </div>
       </div>
 
+      <!-- Category -->
       <div class="form-group">
-        <label for="userId">User ID</label>
+        <label for="category">Category</label>
 
-        <input
-          id="userId"
-          v-model="userId"
-          type="number"
-          placeholder="Enter user ID"
-          :class="{ 'input-error': userIdError }"
-          @input="validateUserId"
-        />
+        <select id="category" v-model="categoryId" required>
+          <option value="" disabled>Select a category</option>
 
-        <p v-if="userIdError" class="field-error">
-          {{ userIdError }}
-        </p>
+          <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.name }}
+          </option>
+        </select>
       </div>
+
+      <!-- Submit -->
       <button type="submit" class="submit-btn" :disabled="loading">
         {{ loading ? 'Creating...' : 'Create Post' }}
       </button>
+
+      <!-- Success -->
       <div v-if="createdPost" class="form-message success-message">
         <h3>Post Created Successfully!</h3>
 
@@ -165,10 +175,14 @@ async function handleSubmit() {
           <strong>{{ createdPost.id }}</strong>
         </p>
       </div>
+
+      <!-- Error -->
       <div v-if="error" class="form-message error-message">
         <h3>Failed to Create Post</h3>
 
-        <p>Something went wrong. Please try again.</p>
+        <p v-if="status === 401">You must be logged in to create a post.</p>
+
+        <p v-else>Something went wrong. Please try again.</p>
 
         <button type="button" class="retry-btn" :disabled="loading" @click="handleSubmit">
           {{ loading ? 'Retrying...' : 'Retry' }}
@@ -177,7 +191,6 @@ async function handleSubmit() {
     </form>
   </section>
 </template>
-
 <style scoped>
 /* =========================
    Create Post
@@ -365,7 +378,8 @@ async function handleSubmit() {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: 100%;
 
   padding: 12px 15px;
@@ -389,7 +403,8 @@ async function handleSubmit() {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   border-color: var(--primary-color);
 
   box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.12);

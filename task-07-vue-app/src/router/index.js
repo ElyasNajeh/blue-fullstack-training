@@ -10,6 +10,8 @@ import FavoritesView from '@/views/FavoritesView.vue'
 const ServicesView = () => import('@/views/ServicesView.vue')
 const NotFoundView = () => import('@/views/NotFoundView.vue')
 const CreatePostView = () => import('@/views/CreatePostView.vue')
+const LoginView = () => import('@/views/LoginView.vue')
+const EditPostView = () => import('@/views/EditPostView.vue')
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +37,11 @@ const router = createRouter({
             component: CreatePostView
         },
         {
+            path: '/posts/:id/edit',
+            name: 'edit-post',
+            component: EditPostView
+        },
+        {
             path: '/posts/:id',
             name: 'post-details',
             component: PostDetailsView
@@ -48,6 +55,11 @@ const router = createRouter({
             path: '/favorites',
             name: 'favorites',
             component: FavoritesView
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView
         },
         {
             path: '/:pathMatch(.*)*',
