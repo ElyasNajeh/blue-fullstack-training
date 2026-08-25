@@ -1,22 +1,19 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 
 import CreatePostView from '@/views/CreatePostView.vue'
 import { usePostStore } from '@/stores/posts'
 
-
 const createMock = vi.fn()
 
 let pinia
-
 
 vi.mock('@/composable/usePosts', () => ({
     useFetch: () => ({
         create: createMock,
     }),
 }))
-
 
 describe('CreatePostView', () => {
 
@@ -27,6 +24,23 @@ describe('CreatePostView', () => {
 
         pinia = createPinia()
         setActivePinia(pinia)
+
+        // Mock categories API
+        globalThis.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: async () => ({
+                data: [
+                    {
+                        id: 1,
+                        name: 'Technology',
+                    },
+                    {
+                        id: 2,
+                        name: 'Business',
+                    },
+                ],
+            }),
+        })
     })
 
 
@@ -38,13 +52,12 @@ describe('CreatePostView', () => {
             },
         })
 
+        await flushPromises()
 
         await wrapper.find('form').trigger('submit')
 
-
         expect(wrapper.text()).toContain('Title is required.')
         expect(wrapper.text()).toContain('Body is required.')
-        expect(wrapper.text()).toContain('User ID is required.')
 
         expect(createMock).not.toHaveBeenCalled()
     })
@@ -71,6 +84,7 @@ describe('CreatePostView', () => {
             },
         })
 
+        await flushPromises()
 
         await wrapper.find('#title').setValue('My Test Post')
 
@@ -78,10 +92,11 @@ describe('CreatePostView', () => {
             .find('#body')
             .setValue('This is valid content for my test post.')
 
-        await wrapper.find('#userId').setValue('5')
-
+        await wrapper.find('#category').setValue('1')
 
         await wrapper.find('form').trigger('submit')
+
+        await flushPromises()
 
 
         expect(createMock).toHaveBeenCalledTimes(1)
@@ -89,7 +104,8 @@ describe('CreatePostView', () => {
         expect(createMock).toHaveBeenCalledWith({
             title: 'My Test Post',
             body: 'This is valid content for my test post.',
-            userId: 5,
+            status: 'published',
+            category_id: '1',
         })
 
 
@@ -99,7 +115,5 @@ describe('CreatePostView', () => {
 
         expect(wrapper.find('#title').element.value).toBe('')
         expect(wrapper.find('#body').element.value).toBe('')
-        expect(wrapper.find('#userId').element.value).toBe('')
     })
-
 })

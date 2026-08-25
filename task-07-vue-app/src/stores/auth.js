@@ -11,12 +11,20 @@ export const useAuthStore = defineStore('auth', () => {
         return !!token.value
     })
 
+    function clearAuth() {
+        user.value = null
+        token.value = null
+        localStorage.removeItem('token')
+    }
+
     async function login(email, password) {
         const response = await fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
+
             headers: {
                 'Content-Type': 'application/json',
             },
+
             body: JSON.stringify({
                 email,
                 password,
@@ -36,58 +44,67 @@ export const useAuthStore = defineStore('auth', () => {
 
         return true
     }
+
     async function fetchUser() {
         if (!token.value) {
-            user.value = null
+            clearAuth()
             return false
         }
 
-        const response = await fetch(`${API_BASE_URL}/me`, {
-            headers: {
-                Authorization: `Bearer ${token.value}`,
-            },
-        })
+        try {
+            const response = await fetch(`${API_BASE_URL}/me`, {
+                headers: {
+                    Authorization: `Bearer ${token.value}`,
+                },
+            })
 
-        if (!response.ok) {
-            user.value = null
-            token.value = null
-            localStorage.removeItem('token')
+            if (!response.ok) {
+                clearAuth()
+                return false
+            }
+
+            const data = await response.json()
+
+            user.value = data.user
+
+            return true
+        } catch (err) {
+            console.log(err)
+
+            clearAuth()
 
             return false
         }
-
-        const data = await response.json()
-
-        user.value = data.user
-
-        return true
     }
+
     async function logout() {
         if (!token.value) {
-            return
+            clearAuth()
+            return true
         }
 
-        const response = await fetch(`${API_BASE_URL}/logout`, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token.value}`,
-            },
-        })
+        try {
+            await fetch(`${API_BASE_URL}/logout`, {
+                method: 'POST',
 
-        if (!response.ok) {
-            return false
+                headers: {
+                    Authorization: `Bearer ${token.value}`,
+                },
+            })
+        } catch (err) {
+            console.log(err)
+        } finally {
+            clearAuth()
         }
-
-        user.value = null
-        token.value = null
-        localStorage.removeItem('token')
 
         return true
     }
+
     return {
         user,
         token,
         isAuthenticated,
+
         login,
         fetchUser,
         logout,

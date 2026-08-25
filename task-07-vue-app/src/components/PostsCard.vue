@@ -2,11 +2,11 @@
 import { RouterLink } from 'vue-router'
 import { defineEmits } from 'vue'
 import { storeToRefs } from 'pinia'
-
+import { useAuthStore } from '@/stores/auth'
 import { usePostStore } from '@/stores/posts'
 
 const postStore = usePostStore()
-
+const authStore = useAuthStore()
 const { favoriteIDs, favoriteCnt } = storeToRefs(postStore)
 
 defineProps({
@@ -33,6 +33,13 @@ defineProps({
 const searchQuery = defineModel()
 
 const emit = defineEmits(['retry', 'delete', 'clear-delete-error'])
+function confirmDelete(id) {
+  const confirmed = window.confirm('Are you sure you want to delete this post?')
+
+  if (confirmed) {
+    emit('delete', id)
+  }
+}
 </script>
 <template>
   <section id="posts">
@@ -98,7 +105,20 @@ const emit = defineEmits(['retry', 'delete', 'clear-delete-error'])
         <div class="post-actions">
           <RouterLink :to="`/posts/${post.id}`"> View Details </RouterLink>
 
-          <RouterLink :to="`/posts/${post.id}/edit`" class="update-btn"> Update </RouterLink>
+          <RouterLink
+            v-if="authStore.user && post.author?.id === authStore.user.id"
+            :to="`/posts/${post.id}/edit`"
+            class="update-btn"
+          >
+            Update
+          </RouterLink>
+          <button
+            v-if="authStore.user && post.author?.id === authStore.user.id"
+            class="delete-btn"
+            @click="confirmDelete(post.id)"
+          >
+            Delete
+          </button>
 
           <button
             class="favorite-btn"
@@ -107,8 +127,6 @@ const emit = defineEmits(['retry', 'delete', 'clear-delete-error'])
           >
             {{ favoriteIDs.includes(post.id) ? 'Remove from Favorite' : 'Add to Favorite' }}
           </button>
-
-          <button class="delete-btn" @click="emit('delete', post.id)">Delete</button>
         </div>
       </article>
     </div>

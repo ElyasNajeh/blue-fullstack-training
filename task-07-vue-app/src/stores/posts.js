@@ -9,6 +9,13 @@ export const usePostStore = defineStore('post', () => {
     const postsError = ref(false)
     const postsStatus = ref(null)
 
+    const pagination = ref({
+        current_page: 1,
+        last_page: 1,
+        per_page: 8,
+        total: 0
+    })
+
 
     // Post Details
     const post = ref(null)
@@ -53,6 +60,8 @@ export const usePostStore = defineStore('post', () => {
         postsLoading,
         postsError,
         postsStatus,
+
+        pagination,
 
         // Post Details
         post,

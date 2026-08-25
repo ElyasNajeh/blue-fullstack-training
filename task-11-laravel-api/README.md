@@ -308,3 +308,75 @@ Protected operations include:
 - Deleting owned posts
 
 The frontend handles authentication and authorization failures without exposing passwords, secret keys, or hardcoded access tokens.
+
+### Tasks 16–17: Full-Stack Integration, Security & Testing
+
+Tasks 16–17 complete and improve the Vue and Laravel full-stack application by focusing on end-to-end functionality, frontend route protection, authorization-aware UI, reusable API logic, user feedback states, and automated testing.
+
+The tasks build on the previous Vue and Laravel integration and ensure that the application works as a complete full-stack system with proper authentication, authorization, pagination, filtering, error handling, and testing.
+
+Main topics included:
+
+- Complete end-to-end CRUD flow
+- Backend-powered post search and filtering
+- Laravel pagination integrated with Vue
+- Delete confirmation before removing posts
+- UI updates after create, update, and delete operations
+- Frontend route protection
+- Authentication state validation
+- Handling expired or invalid authentication tokens
+- Authorization-aware UI
+- Showing Edit and Delete actions only to post owners
+- Laravel Policies as the final authorization layer
+- Handling `401 Unauthorized`
+- Handling `403 Forbidden`
+- Handling `404 Not Found`
+- Loading, empty, success, and error states
+- Disabled submit buttons while requests are processing
+- Reusable API/composable logic
+- Environment-based API configuration
+- Laravel Feature Tests
+- Vue automated tests using Vitest
+- Mocking API behavior in frontend tests
+
+#### End-to-End CRUD Flow
+
+The Vue frontend is fully connected to the Laravel API for post management.
+
+Users can load and search posts, navigate through paginated results, create new posts, update their own posts, and delete their own posts with a confirmation step.
+
+Successful CRUD operations are reflected in the interface without requiring a manual full-page refresh.
+
+#### Frontend Route Protection
+
+Protected Vue routes such as Create Post and Edit Post require authentication.
+
+The application validates the stored authentication token and redirects unauthenticated users to the appropriate login state when necessary.
+
+#### Authorization-Aware UI
+
+The frontend uses the authenticated user state to display Edit and Delete controls only when the logged-in user owns the post.
+
+This improves the user experience, while Laravel Policies remain responsible for the final backend authorization and security checks.
+
+#### Search and Pagination
+
+Post searching is handled using Laravel query parameters instead of filtering only the currently loaded frontend data.
+
+Pagination is also controlled by the Laravel API, allowing the Vue application to navigate between backend result pages.
+
+#### Automated Testing
+
+Laravel Feature Tests were added to verify important backend API behavior, including:
+
+- Successful user login
+- Unauthenticated access to protected endpoints
+- Authenticated post creation
+- Validation failure for invalid post data
+- Preventing users from updating another user's post
+- Preventing users from deleting another user's post
+- Successful posts list response
+
+Vue tests use Vitest and Vue Test Utils to verify important frontend behavior without depending on a live backend API.
+
+The frontend tests cover form validation and application behavior using mocked API responses.

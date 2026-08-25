@@ -2,7 +2,7 @@ import { useAuthStore } from '@/stores/auth'
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 const POSTS_ENDPOINT = '/posts'
 
-export function useFetch(data, loading, error, status) {
+export function useFetch(data, loading, error, status, pagination = null) {
     const authStore = useAuthStore()
     async function load(url) {
         try {
@@ -21,6 +21,15 @@ export function useFetch(data, loading, error, status) {
             const result = await response.json()
 
             data.value = result.data
+
+            if (pagination && result.meta) {
+                pagination.value = {
+                    current_page: result.meta.current_page,
+                    last_page: result.meta.last_page,
+                    per_page: result.meta.per_page,
+                    total: result.meta.total,
+                }
+            }
         } catch (err) {
             error.value = true
             console.log(err)
