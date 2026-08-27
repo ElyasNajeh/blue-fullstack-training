@@ -19,7 +19,8 @@ class PageController extends Controller
 
     public function show($slug)
     {
-        $page = Page::where('slug', $slug)
+        $page = Page::with('contentBlocks')
+            ->where('slug', $slug)
             ->where('status', 'published')
             ->first();
 
@@ -97,7 +98,9 @@ class PageController extends Controller
     }
     public function manageIndex()
     {
-        $pages = Page::orderBy('created_at', 'desc')->get();
+        $pages = Page::with('contentBlocks')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return response()->json([
             'data' => $pages

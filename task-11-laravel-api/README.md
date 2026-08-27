@@ -401,3 +401,34 @@ Main topics included:
 - Duplicate slug prevention
 - Vue handling of backend validation errors
 - Laravel Sanctum protection for management endpoints
+
+### Task 19: Reusable CMS Content Blocks
+
+Task 19 extends the CMS Pages module by introducing reusable content blocks that allow pages to have flexible and dynamically rendered content.
+
+The task focuses on creating reusable blocks, connecting multiple ordered blocks to pages, managing blocks through protected APIs and the Vue management interface, and dynamically rendering different block types in public pages.
+
+Main topics included:
+
+- Reusable content blocks
+- Page-to-block relationships
+- Block types and flexible content data
+- Block display ordering
+- Protected block management APIs
+- Creating, updating, deleting, and reordering blocks
+- CMS-style block management interface
+- Dynamic block rendering
+- Reusable Vue block components
+- Hero, Text, and Call to Action blocks
+- Unsupported block fallback handling
+- Separation between public presentation and authenticated management
+
+#### CMS Development Concepts
+
+Pages are stored in the database and loaded dynamically using their slugs instead of creating a separate hardcoded Vue page for each page.
+
+Each page can contain multiple reusable content blocks. Blocks have a type, display position, and content data, allowing different types of content to be stored and ordered on the same page.
+
+The Vue frontend uses reusable components for supported block types and dynamically selects the correct component based on the block type returned by Laravel.
+
+Content management is separated from public presentation. Public users can view published page content, while authenticated users can manage pages and their content blocks through protected management functionality.

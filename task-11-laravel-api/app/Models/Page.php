@@ -12,4 +12,10 @@ class Page extends Model
         'content',
         'status',
     ];
+
+    public function contentBlocks()
+    {
+        return $this->hasMany(ContentBlock::class)
+            ->orderBy('position');
+    }
 }

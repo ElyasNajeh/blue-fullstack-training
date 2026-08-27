@@ -9,6 +9,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContentBlockController;
+
 
 Route::get('/health', [HealthController::class, 'health']);
 
@@ -51,4 +53,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pages', [PageController::class, 'store']);
     Route::put('/pages/{id}', [PageController::class, 'update']);
     Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Pages
+    Route::get('/manage/pages', [PageController::class, 'manageIndex']);
+    Route::post('/pages', [PageController::class, 'store']);
+    Route::put('/pages/{id}', [PageController::class, 'update']);
+    Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+
+    // Content Blocks
+    Route::post('/pages/{pageId}/blocks', [ContentBlockController::class, 'store']);
+    Route::put('/blocks/{id}', [ContentBlockController::class, 'update']);
+    Route::delete('/blocks/{id}', [ContentBlockController::class, 'destroy']);
+    Route::put('/pages/{pageId}/blocks/reorder', [ContentBlockController::class, 'reorder']);
 });

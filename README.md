@@ -173,6 +173,17 @@ The integrated application supports:
 
 Successful create, update, and delete operations are reflected in the frontend without requiring a manual full-page refresh.
 
+### CMS Development Concepts
+
+Tasks 18 and 19 introduced the main concepts used in CMS development.
+
+Pages are stored in the database and can be loaded dynamically using their slugs instead of creating a separate hardcoded Vue page for every piece of content.
+
+Pages can contain multiple reusable content blocks such as Hero, Text, and Call to Action blocks. Each block has a type, position, and its own content data. Vue uses reusable components for these block types and dynamically renders the correct component based on the data returned by Laravel.
+
+The CMS management interface allows authenticated users to create and edit pages and to add, update, delete, and reorder their content blocks.
+
+Public presentation is separated from content management. Public users can view published pages, while page and block management operations are protected and require authentication.
 ### Running Tests
 
 #### Laravel Tests

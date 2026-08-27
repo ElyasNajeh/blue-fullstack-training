@@ -203,6 +203,21 @@ npm run dev
 - Added handling for duplicate page slugs.
 - Protected page management routes using authentication.
 
+
+---
+
+## Task 19 – Reusable CMS Content Blocks
+
+- Added reusable content blocks to CMS pages.
+- Added Hero, Text, and Call to Action block components.
+- Added a CMS-style interface for managing page content blocks.
+- Added block creation, editing, deletion, and display ordering.
+- Added dynamic block rendering based on block type.
+- Added reusable Vue components for different content block types.
+- Added fallback handling for unsupported block types.
+- Integrated content blocks with the Laravel API.
+- Separated public page rendering from authenticated content management.
+
 # Frontend Handover - Task 10
 
 ## Overview

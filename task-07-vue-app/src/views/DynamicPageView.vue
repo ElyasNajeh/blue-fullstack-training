@@ -2,6 +2,10 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 
+import HeroBlock from '@/components/blocks/HeroBlock.vue'
+import TextBlock from '@/components/blocks/TextBlock.vue'
+import CtaBlock from '@/components/blocks/CtaBlock.vue'
+
 const route = useRoute()
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
@@ -10,6 +14,16 @@ const page = ref(null)
 const loading = ref(false)
 const notFound = ref(false)
 const serverError = ref(false)
+
+const blockComponents = {
+  hero: HeroBlock,
+  text: TextBlock,
+  cta: CtaBlock,
+}
+
+function getBlockComponent(type) {
+  return blockComponents[type] || null
+}
 
 async function loadPage() {
   try {
@@ -64,6 +78,7 @@ watch(
     <!-- Not Found -->
     <div v-else-if="notFound" class="page-state error-state">
       <h1>Page Not Found</h1>
+
       <p>The requested page does not exist or is not published.</p>
 
       <RouterLink to="/" class="back-link"> Back to Home </RouterLink>
@@ -72,6 +87,7 @@ watch(
     <!-- Server Error -->
     <div v-else-if="serverError" class="page-state error-state">
       <h1>Something went wrong</h1>
+
       <p>Failed to load the page. Please try again.</p>
 
       <button type="button" class="retry-btn" @click="loadPage">Retry</button>
@@ -81,7 +97,20 @@ watch(
     <article v-else-if="page" class="page-content">
       <h1>{{ page.title }}</h1>
 
-      <p>{{ page.content }}</p>
+      <!-- Empty Blocks -->
+      <p v-if="!page.content_blocks?.length" class="empty-blocks">No content available.</p>
+
+      <!-- Dynamic Blocks -->
+      <template v-for="block in page.content_blocks" :key="block.id">
+        <component
+          :is="getBlockComponent(block.type)"
+          v-if="getBlockComponent(block.type)"
+          :data="block.data"
+        />
+
+        <!-- Unsupported Block -->
+        <div v-else class="unsupported-block">Unsupported content block.</div>
+      </template>
 
       <RouterLink to="/" class="back-link"> Back to Home </RouterLink>
     </article>
