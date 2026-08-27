@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PageController;
 
 Route::get('/health', [HealthController::class, 'health']);
 
@@ -38,3 +39,16 @@ Route::get('/me', [AuthController::class, 'me'])
     ->middleware('auth:sanctum');
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum');
+
+// Public Pages
+Route::get('/pages', [PageController::class, 'index']);
+Route::get('/pages/{slug}', [PageController::class, 'show']);
+
+// Pages Management
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/manage/pages', [PageController::class, 'manageIndex']);
+
+    Route::post('/pages', [PageController::class, 'store']);
+    Route::put('/pages/{id}', [PageController::class, 'update']);
+    Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+});

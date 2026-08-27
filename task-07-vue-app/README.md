@@ -158,6 +158,51 @@ npm run dev
 
 ---
 
+---
+
+## Task 15 – Vue & Laravel Integration
+
+- Connected the Vue frontend to the Laravel REST API.
+- Replaced JSONPlaceholder with the Laravel backend.
+- Integrated login, logout, and authenticated user retrieval.
+- Added authentication state management using Pinia.
+- Added Sanctum Bearer tokens to protected API requests.
+- Loaded posts and categories from Laravel.
+- Connected create, update, and delete post operations to the backend.
+- Added handling for 401 Unauthorized and 403 Forbidden responses.
+- Added post ownership handling for update and delete operations.
+
+---
+
+## Tasks 16–17 – Full-Stack Integration, Security & Testing
+
+- Completed the end-to-end post CRUD flow.
+- Added backend-powered post search.
+- Integrated Laravel pagination with Vue.
+- Added delete confirmation.
+- Added protected frontend routes.
+- Added authentication token validation.
+- Added authorization-aware UI for post owners.
+- Improved loading, empty, success, and error states.
+- Added reusable API request logic.
+- Added automated frontend testing using Vitest and Vue Test Utils.
+
+---
+
+## Task 18 – CMS-Oriented Pages Module
+
+- Added dynamic CMS-oriented pages to the Vue application.
+- Added dynamic page routing using page slugs.
+- Loaded published page content from the Laravel API.
+- Added loading, not-found, and server-error states for dynamic pages.
+- Added an authenticated Pages Management interface.
+- Added Create Page functionality.
+- Added Edit Page functionality.
+- Added draft and published page statuses.
+- Added backend validation feedback to page forms.
+- Added handling for duplicate page slugs.
+- Protected page management routes using authentication.
+
 # Frontend Handover - Task 10
 
 ## Overview
@@ -184,7 +229,8 @@ npm install
 Create the environment configuration:
 
 ```env
-VITE_API_BASE_URL=https://jsonplaceholder.typicode.com
+VITE_API_BASE_URL=http://127.0.0.1:8000/api
+
 ```
 
 Run the development server:
@@ -219,7 +265,8 @@ npm run preview
 
 ## Known Limitations
 
-JSONPlaceholder simulates post creation and does not permanently save created posts.
+- Laravel REST API
+- Laravel Sanctum Authentication
 
 ## Final QA
 

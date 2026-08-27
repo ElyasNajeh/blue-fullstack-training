@@ -13,6 +13,10 @@ const NotFoundView = () => import('@/views/NotFoundView.vue')
 const CreatePostView = () => import('@/views/CreatePostView.vue')
 const LoginView = () => import('@/views/LoginView.vue')
 const EditPostView = () => import('@/views/EditPostView.vue')
+const DynamicPageView = () => import('@/views/DynamicPageView.vue')
+const ManagePagesView = () => import('@/views/ManagePagesView.vue')
+const CreatePageView = () => import('@/views/CreatePageView.vue')
+const EditPageView = () => import('@/views/EditPageView.vue')
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +67,35 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: LoginView
+        },
+        {
+            path: '/page/:slug',
+            name: 'dynamic-page',
+            component: DynamicPageView
+        },
+        {
+            path: '/manage/pages',
+            name: 'manage-pages',
+            component: ManagePagesView,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/manage/pages/create',
+            name: 'create-page',
+            component: CreatePageView,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/manage/pages/:id/edit',
+            name: 'edit-page',
+            component: EditPageView,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/:pathMatch(.*)*',

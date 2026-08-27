@@ -1,6 +1,6 @@
 ## Full-Stack Project Setup
 
-The project is a full-stack application built with Vue.js for the frontend and Laravel for the backend. The frontend communicates with the Laravel REST API to manage authentication, posts, categories, and other application data.
+The project is a full-stack application built with Vue.js for the frontend and Laravel for the backend. The frontend communicates with the Laravel REST API to manage authentication, posts, categories, CMS pages, and other application data.
 
 ### Required Software
 
@@ -129,7 +129,7 @@ The general authentication flow is:
 1. The user logs in from the Vue frontend.
 2. Laravel validates the credentials and returns a Sanctum access token.
 3. Vue stores the token and uses it as a Bearer token for authenticated API requests.
-4. Protected operations such as creating, updating, and deleting posts require authentication.
+4. Protected operations such as creating, updating, and deleting posts, as well as managing CMS pages, require authentication.
 5. Laravel authorization policies ensure that users can only update or delete their own posts.
 6. Invalid or expired authentication returns a `401 Unauthorized` response, while unauthorized ownership actions return `403 Forbidden`.
 
@@ -148,6 +148,26 @@ The integrated application supports:
 - Updating owned posts
 - Deleting owned posts with confirmation
 - Authorization-aware frontend controls
+- Loading, empty, success, and error states
+- Handling `401`, `403`, `404`, validation, and server errors
+
+Successful create, update, and delete operations are reflected in the frontend without requiring a manual full-page refresh.
+
+The integrated application supports:
+
+- User authentication
+- Loading posts and categories from Laravel
+- Backend search and pagination
+- Creating posts
+- Updating owned posts
+- Deleting owned posts with confirmation
+- Authorization-aware frontend controls
+- Dynamic CMS pages using slugs
+- Public published-page rendering
+- Authenticated page management
+- Creating and editing CMS pages
+- Draft and published page statuses
+- Page validation and duplicate slug handling
 - Loading, empty, success, and error states
 - Handling `401`, `403`, `404`, validation, and server errors
 

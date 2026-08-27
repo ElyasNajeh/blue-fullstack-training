@@ -380,3 +380,24 @@ Laravel Feature Tests were added to verify important backend API behavior, inclu
 Vue tests use Vitest and Vue Test Utils to verify important frontend behavior without depending on a live backend API.
 
 The frontend tests cover form validation and application behavior using mocked API responses.
+
+### Task 18: CMS-Oriented Pages Module
+
+Task 18 extends the full-stack application by introducing a simple CMS-oriented Pages module backed by Laravel and rendered dynamically in Vue.
+
+The task focuses on managing database-backed page content, separating public content from authenticated management operations, dynamically rendering published pages using slugs, and providing authenticated interfaces for creating and editing pages.
+
+Main topics included:
+
+- Database-backed Pages content model
+- Unique page slugs
+- Draft and published page statuses
+- Public published-page API
+- Dynamic page rendering using Vue Router
+- Loading, not-found, and server-error states
+- Authenticated page management
+- Create and edit page forms
+- Laravel validation
+- Duplicate slug prevention
+- Vue handling of backend validation errors
+- Laravel Sanctum protection for management endpoints
