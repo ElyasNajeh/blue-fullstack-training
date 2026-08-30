@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        type: text
+
+    short_description:
+        label: Short Description
+        type: textarea
+        size: small
+
+    description:
+        label: Detailed Description
+        type: textarea
+        size: large
+
+    is_active:
+        label: Active
+        type: switch
+        default: true
+
+    display_order:
+        label: Display Order
+        type: number
+        default: 0
