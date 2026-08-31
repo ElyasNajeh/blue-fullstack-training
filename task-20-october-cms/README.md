@@ -82,6 +82,27 @@ http://127.0.0.1:8000/admin
 - Added responsive styling for the Services section.
 - Verified backend updates are reflected on the public page.
 
+
+---
+
+## Task 22 - October CMS Relationships & Media
+
+- Added a database-backed Service Category model and migration.
+- Implemented backend CRUD management for Service Categories.
+- Added category status, display ordering, and unique slug validation.
+- Added a Category-to-Services relationship.
+- Updated the Service backend form with a Category relationship dropdown.
+- Displayed Category information in the backend Services list.
+- Added Service image attachments with backend upload, change, and remove support.
+- Enhanced the public Services component to load Categories and images efficiently.
+- Added dynamic Category filtering to the public Services page.
+- Excluded inactive Services and Categories from public output.
+- Applied configured display ordering to Categories and Services.
+- Added a dynamic `/services/:id` Service details page.
+- Added clean not-found handling for missing or unpublished Services.
+- Added reusable and responsive markup for Service listings and details.
+- Verified Category filtering, ordering, status behavior, relationships, images, and backend updates.
+
 ---
 
 ## Project Structure

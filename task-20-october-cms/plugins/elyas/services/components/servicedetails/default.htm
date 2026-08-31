@@ -1,0 +1,27 @@
+<div class="service-details">
+
+    {% if service.image %}
+    <img src="{{ service.image.path }}" alt="{{ service.title }}" class="service-details-image">
+    {% endif %}
+
+    {% if service.category %}
+    <span class="service-category">
+        {{ service.category.name }}
+    </span>
+    {% endif %}
+
+    <h1>{{ service.title }}</h1>
+
+    <p class="service-details-short">
+        {{ service.short_description }}
+    </p>
+
+    <div class="service-details-description">
+        {{ service.description }}
+    </div>
+
+    <a href="{{ 'services'|page }}" class="service-back-link">
+        Back to Services
+    </a>
+
+</div>

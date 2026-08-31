@@ -5,14 +5,8 @@ namespace Elyas\Services;
 use Backend;
 use System\Classes\PluginBase;
 
-/**
- * Services Plugin
- */
 class Plugin extends PluginBase
 {
-    /**
-     * Plugin details.
-     */
     public function pluginDetails()
     {
         return [
@@ -23,35 +17,24 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * Register plugin.
-     */
     public function register()
     {
         //
     }
 
-    /**
-     * Boot plugin.
-     */
     public function boot()
     {
         //
     }
 
-    /**
-     * Register frontend components.
-     */
     public function registerComponents()
     {
         return [
             \Elyas\Services\Components\Services::class => 'services',
+            \Elyas\Services\Components\ServiceDetails::class => 'serviceDetails',
         ];
     }
 
-    /**
-     * Register backend permissions.
-     */
     public function registerPermissions()
     {
         return [
@@ -59,12 +42,14 @@ class Plugin extends PluginBase
                 'tab' => 'Services',
                 'label' => 'Manage Services'
             ],
+
+            'elyas.services.categories' => [
+                'tab' => 'Services',
+                'label' => 'Manage Categories'
+            ],
         ];
     }
 
-    /**
-     * Register backend navigation.
-     */
     public function registerNavigation()
     {
         return [
@@ -72,8 +57,24 @@ class Plugin extends PluginBase
                 'label' => 'Services',
                 'url' => Backend::url('elyas/services/services'),
                 'icon' => 'icon-leaf',
-                'permissions' => ['elyas.services.services'],
+                'permissions' => ['elyas.services.*'],
                 'order' => 500,
+
+                'sideMenu' => [
+                    'services' => [
+                        'label' => 'Services',
+                        'url' => Backend::url('elyas/services/services'),
+                        'icon' => 'icon-list',
+                        'permissions' => ['elyas.services.services'],
+                    ],
+
+                    'categories' => [
+                        'label' => 'Categories',
+                        'url' => Backend::url('elyas/services/categories'),
+                        'icon' => 'icon-folder',
+                        'permissions' => ['elyas.services.categories'],
+                    ],
+                ],
             ],
         ];
     }

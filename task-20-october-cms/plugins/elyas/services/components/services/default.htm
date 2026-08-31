@@ -1,11 +1,48 @@
+<div class="services-filters">
+
+    <a href="{{ 'services'|page }}" class="service-filter {{ selectedCategory ? '' : 'active' }}">
+        All
+    </a>
+
+    {% for category in categories %}
+    <a href="{{ 'services'|page }}?category={{ category.slug }}"
+        class="service-filter {{ selectedCategory == category.slug ? 'active' : '' }}">
+        {{ category.name }}
+    </a>
+    {% endfor %}
+
+</div>
+
+
 <div class="services-section">
+
     {% if services|length > 0 %}
 
     {% for service in services %}
     <div class="service-card">
+
+        {% if service.image %}
+        <img src="{{ service.image.path }}" alt="{{ service.title }}" class="service-image">
+        {% endif %}
+
+        {% if service.category %}
+        <span class="service-category">
+            {{ service.category.name }}
+        </span>
+        {% endif %}
+
         <h3>{{ service.title }}</h3>
+
         <p>{{ service.short_description }}</p>
-        <div>{{ service.description }}</div>
+
+        <div>
+            {{ service.description }}
+        </div>
+
+        <a href="{{ 'service-details'|page({ id: service.id }) }}" class="service-details-link">
+            View Details
+        </a>
+
     </div>
     {% endfor %}
 
@@ -16,4 +53,5 @@
     </p>
 
     {% endif %}
+
 </div>

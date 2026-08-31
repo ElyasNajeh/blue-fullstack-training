@@ -17,6 +17,21 @@ fields:
         type: textarea
         size: large
 
+    category:
+        label: Category
+        type: relation
+        nameFrom: name
+        required: true
+
+    image:
+        label: Service Image
+        type: fileupload
+        mode: image
+        imageWidth: 300
+        imageHeight: 200
+        fileTypes: jpg,jpeg,png,webp
+        maxFiles: 1
+
     is_active:
         label: Active
         type: switch

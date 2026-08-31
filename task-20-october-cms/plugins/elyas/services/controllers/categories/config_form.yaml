@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/elyas/services/models/category/fields.yaml
+
+# Model Class name
+modelClass: Elyas\Services\Models\Category
+
+# Default redirect location
+defaultRedirect: elyas/services/categories
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: elyas/services/categories/update/:id
+    redirectClose: elyas/services/categories
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: elyas/services/categories
+    redirectClose: elyas/services/categories
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title
