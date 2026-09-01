@@ -32,6 +32,7 @@ class Plugin extends PluginBase
         return [
             \Elyas\Services\Components\Services::class => 'services',
             \Elyas\Services\Components\ServiceDetails::class => 'serviceDetails',
+            \Elyas\Services\Components\ContactForm::class => 'contactForm',
         ];
     }
 
@@ -46,6 +47,26 @@ class Plugin extends PluginBase
             'elyas.services.categories' => [
                 'tab' => 'Services',
                 'label' => 'Manage Categories'
+            ],
+
+            'elyas.services.contact_messages' => [
+                'tab' => 'Services',
+                'label' => 'Manage Contact Messages'
+            ],
+        ];
+    }
+
+    public function registerSettings()
+    {
+        return [
+            'contact_settings' => [
+                'label' => 'Contact Settings',
+                'description' => 'Manage website contact information.',
+                'category' => 'Services',
+                'icon' => 'icon-envelope',
+                'class' => \Elyas\Services\Models\Settings::class,
+                'order' => 500,
+                'keywords' => 'contact email phone address',
             ],
         ];
     }
@@ -73,6 +94,13 @@ class Plugin extends PluginBase
                         'url' => Backend::url('elyas/services/categories'),
                         'icon' => 'icon-folder',
                         'permissions' => ['elyas.services.categories'],
+                    ],
+
+                    'contact_messages' => [
+                        'label' => 'Contact Messages',
+                        'url' => Backend::url('elyas/services/contactmessages'),
+                        'icon' => 'icon-envelope',
+                        'permissions' => ['elyas.services.contact_messages'],
                     ],
                 ],
             ],

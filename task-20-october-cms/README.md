@@ -105,6 +105,45 @@ http://127.0.0.1:8000/admin
 
 ---
 
+## Task 23 - October CMS Permissions, Settings & AJAX Contact Management
+
+- Added separate backend permissions for managing Services, Service Categories, and Contact Messages.
+- Applied permissions to backend controllers and navigation.
+- Verified permissions using a non-superuser backend account with different access scenarios.
+- Added plugin Contact Settings for managing contact email, phone number, address, and help text.
+- Displayed configured contact information dynamically on the public Contact page.
+- Added a database-backed `ContactMessage` model with name, email, subject, message, status, and timestamps.
+- Added `New` and `Read` message statuses.
+- Created a responsive public Contact Us form using the existing October CMS theme.
+- Implemented Contact form submission using the October CMS AJAX framework.
+- Added server-side required-field and email validation.
+- Added field-level validation errors and success feedback.
+- Prevented invalid Contact messages from being saved.
+- Added loading behavior during AJAX submissions to reduce duplicate submissions.
+- Added backend Contact Message management with list, detail, status update, and delete functionality.
+- Protected Contact Messages using backend permissions.
+- Organized Services, Categories, and Contact Messages in the backend navigation.
+- Verified Contact Settings changes are reflected publicly without editing theme markup.
+
+### Contact Message Flow
+
+1. A visitor submits the Contact form.
+2. October CMS processes the request through an AJAX handler.
+3. The request is validated on the server.
+4. Valid messages are stored in the database with `New` status.
+5. Authorized backend administrators can view, update, or delete messages.
+
+### Validation & Security
+
+- Contact form validation is performed on the server.
+- Required fields and valid email addresses are enforced.
+- Invalid submissions are not stored.
+- Backend sections are protected using October CMS permissions.
+- Non-superusers can only access sections they have permission to manage.
+- Sensitive credentials and secrets are not committed to the repository.
+
+---
+
 ## Project Structure
 
 ```text

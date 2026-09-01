@@ -216,6 +216,123 @@ footer {
     text-decoration: none;
 }
 
+/* Contact Page */
+.contact-page {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.contact-page h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+}
+
+.contact-info {
+    padding: 20px;
+    margin: 25px 0 35px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.contact-info p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.contact-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #222;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.contact-form-wrapper button {
+    align-self: flex-start;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.contact-form-wrapper button:hover {
+    background: #444;
+}
+
+.form-error {
+    color: #c62828;
+    font-size: 0.9rem;
+}
+
+.contact-success {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* Contact Mobile */
+@media (max-width: 600px) {
+    .contact-page h1 {
+        font-size: 1.8rem;
+    }
+
+    .contact-info {
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+
+    .contact-form-wrapper {
+        padding: 18px;
+    }
+
+    .contact-form-wrapper button {
+        width: 100%;
+    }
+}
+
 /* Tablet */
 @media (max-width: 900px) {
     .services-section {

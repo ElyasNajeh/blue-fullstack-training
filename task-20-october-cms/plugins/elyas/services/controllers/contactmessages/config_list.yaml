@@ -1,0 +1,8 @@
+modelClass: Elyas\Services\Models\ContactMessage
+title: Contact Messages
+list: $/elyas/services/models/contactmessage/columns.yaml
+recordUrl: 'elyas/services/contactmessages/update/:id'
+
+record:
+    title: Contact Messages
+    message: backend::lang.list.delete_selected_confirm

@@ -1,0 +1,21 @@
+fields:
+    contact_email:
+        label: Contact Email
+        type: email
+        required: true
+
+    phone:
+        label: Phone Number
+        type: text
+        required: true
+
+    address:
+        label: Address
+        type: textarea
+        size: small
+        required: true
+
+    help_text:
+        label: Contact / Help Text
+        type: textarea
+        size: small

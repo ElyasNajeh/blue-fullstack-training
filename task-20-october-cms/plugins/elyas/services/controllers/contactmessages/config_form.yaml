@@ -1,0 +1,9 @@
+name: Contact Message
+modelClass: Elyas\Services\Models\ContactMessage
+form: $/elyas/services/models/contactmessage/fields.yaml
+defaultRedirect: elyas/services/contactmessages
+
+update:
+    title: View Contact Message
+    redirect: elyas/services/contactmessages
+    redirectClose: elyas/services/contactmessages

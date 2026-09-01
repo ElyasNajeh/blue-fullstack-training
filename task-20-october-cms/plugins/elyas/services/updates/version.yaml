@@ -9,3 +9,7 @@ v1.0.2:
 v1.0.3:
     - Add category relationship to services
     - add_category_id_to_services_table.php
+
+v1.0.4:
+    - 'Create contact messages table'
+    - create_contact_messages_table.php

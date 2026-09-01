@@ -1,0 +1,30 @@
+fields:
+    name:
+        label: Name
+        type: text
+        readOnly: true
+
+    email:
+        label: Email
+        type: text
+        readOnly: true
+
+    subject:
+        label: Subject
+        type: text
+        readOnly: true
+
+    message:
+        label: Message
+        type: textarea
+        size: large
+        readOnly: true
+
+    status:
+        label: Status
+        type: dropdown
+
+    created_at:
+        label: Submitted At
+        type: text
+        readOnly: true
