@@ -1,0 +1,23 @@
+title = "Dynamic Page"
+url = "/pages/:slug"
+layout = "default"
+
+[dynamicPage]
+==
+{% for section in dynamicPage.sections %}
+
+{% if section.type == 'hero' %}
+{% partial 'page-sections/hero' section=section %}
+
+{% elseif section.type == 'text' %}
+{% partial 'page-sections/text' section=section %}
+
+{% elseif section.type == 'image_text' %}
+{% partial 'page-sections/image-text' section=section %}
+
+{% elseif section.type == 'cta' %}
+{% partial 'page-sections/cta' section=section %}
+
+{% endif %}
+
+{% endfor %}

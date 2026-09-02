@@ -1,0 +1,42 @@
+fields:
+    type:
+        label: Section Type
+        type: dropdown
+        required: true
+
+    content[title]:
+        label: Title / Heading
+        type: text
+
+    content[subtitle]:
+        label: Subtitle
+        type: text
+
+    content[body]:
+        label: Body Content
+        type: textarea
+        size: large
+
+    content[image]:
+        label: Image URL
+        type: text
+        comment: Optional image URL for Hero or Image + Text sections.
+
+    content[button_label]:
+        label: Button Label
+        type: text
+
+    content[button_url]:
+        label: Button URL
+        type: text
+
+    display_order:
+        label: Display Order
+        type: number
+        default: 0
+        required: true
+
+    is_active:
+        label: Active
+        type: switch
+        default: true

@@ -1,0 +1,9 @@
+modelClass: Elyas\Services\Models\Page
+title: Dynamic Pages
+list: $/elyas/services/models/page/columns.yaml
+recordUrl: 'elyas/services/pages/update/:id'
+
+showCheckboxes: true
+
+toolbar:
+    buttons: list_toolbar

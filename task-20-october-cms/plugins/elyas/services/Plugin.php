@@ -33,6 +33,7 @@ class Plugin extends PluginBase
             \Elyas\Services\Components\Services::class => 'services',
             \Elyas\Services\Components\ServiceDetails::class => 'serviceDetails',
             \Elyas\Services\Components\ContactForm::class => 'contactForm',
+            \Elyas\Services\Components\DynamicPage::class => 'dynamicPage',
         ];
     }
 
@@ -52,6 +53,11 @@ class Plugin extends PluginBase
             'elyas.services.contact_messages' => [
                 'tab' => 'Services',
                 'label' => 'Manage Contact Messages'
+            ],
+
+            'elyas.services.pages' => [
+                'tab' => 'Services',
+                'label' => 'Manage Dynamic Pages'
             ],
         ];
     }
@@ -101,6 +107,13 @@ class Plugin extends PluginBase
                         'url' => Backend::url('elyas/services/contactmessages'),
                         'icon' => 'icon-envelope',
                         'permissions' => ['elyas.services.contact_messages'],
+                    ],
+
+                    'pages' => [
+                        'label' => 'Dynamic Pages',
+                        'url' => Backend::url('elyas/services/pages'),
+                        'icon' => 'icon-file-text-o',
+                        'permissions' => ['elyas.services.pages'],
                     ],
                 ],
             ],

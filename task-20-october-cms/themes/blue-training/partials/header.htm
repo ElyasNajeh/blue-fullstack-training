@@ -2,9 +2,10 @@
     <h2>Blue Information Technology</h2>
 
     <nav>
-        <a href="/">Home</a>
-        <a href="/services">Services</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="{{ 'home'|page }}">Home</a>
+        <a href="{{ 'services'|page }}">Services</a>
+        <a href="{{ 'about'|page }}">About</a>
+        <a href="{{ 'contact'|page }}">Contact</a>
+        <a href="{{ 'dynamic-page'|page({ slug: 'about-company' }) }}">About Company</a>
     </nav>
 </header>

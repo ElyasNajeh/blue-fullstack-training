@@ -313,6 +313,168 @@ footer {
     color: #1b5e20;
 }
 
+/* ========================================
+   Dynamic Page Sections
+======================================== */
+
+.page-section {
+    margin-bottom: 40px;
+}
+
+
+/* Hero Section */
+.hero-section {
+    padding: 50px 30px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    margin: 0 0 15px;
+    font-size: 2.5rem;
+}
+
+.hero-section p {
+    margin: 0 auto 25px;
+    max-width: 700px;
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+.hero-section img {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    margin: 25px auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.hero-section a {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero-section a:hover {
+    background: #444;
+}
+
+
+/* Text Section */
+.text-section {
+    padding: 10px 0;
+}
+
+.text-section h2 {
+    margin: 0 0 15px;
+    font-size: 2rem;
+}
+
+.text-section div {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* Image + Text Section */
+.image-text-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.image-text-section img {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.image-text-section h2 {
+    margin: 0 0 15px;
+    font-size: 2rem;
+}
+
+.image-text-section p {
+    margin: 0;
+    color: #444;
+    line-height: 1.8;
+}
+
+
+/* CTA Section */
+.cta-section {
+    padding: 40px 30px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.cta-section h2 {
+    margin: 0 0 15px;
+    font-size: 2rem;
+}
+
+.cta-section p {
+    margin: 0 auto 20px;
+    max-width: 650px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.cta-section a {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    text-decoration: none;
+}
+
+.cta-section a:hover {
+    background: #444;
+}
+
+
+/* Dynamic Sections Mobile */
+@media (max-width: 600px) {
+    .page-section {
+        margin-bottom: 30px;
+    }
+
+    .hero-section {
+        padding: 35px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .text-section h2,
+    .image-text-section h2,
+    .cta-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .image-text-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .cta-section {
+        padding: 30px 20px;
+    }
+}
+
 /* Contact Mobile */
 @media (max-width: 600px) {
     .contact-page h1 {

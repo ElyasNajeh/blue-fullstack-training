@@ -1,0 +1,15 @@
+<section class="page-section image-text-section">
+    {% if section.content.image %}
+    <img src="{{ section.content.image }}" alt="{{ section.content.title }}">
+    {% endif %}
+
+    <div>
+        {% if section.content.title %}
+        <h2>{{ section.content.title }}</h2>
+        {% endif %}
+
+        {% if section.content.body %}
+        <p>{{ section.content.body }}</p>
+        {% endif %}
+    </div>
+</section>

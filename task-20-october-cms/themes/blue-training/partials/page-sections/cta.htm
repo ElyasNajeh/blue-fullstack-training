@@ -1,0 +1,15 @@
+<section class="page-section cta-section">
+    {% if section.content.title %}
+    <h2>{{ section.content.title }}</h2>
+    {% endif %}
+
+    {% if section.content.body %}
+    <p>{{ section.content.body }}</p>
+    {% endif %}
+
+    {% if section.content.button_label and section.content.button_url %}
+    <a href="{{ section.content.button_url }}">
+        {{ section.content.button_label }}
+    </a>
+    {% endif %}
+</section>

@@ -1,0 +1,17 @@
+<section class="page-section hero-section">
+    <h1>{{ section.content.title }}</h1>
+
+    {% if section.content.subtitle %}
+        <p>{{ section.content.subtitle }}</p>
+    {% endif %}
+
+    {% if section.content.image %}
+        <img src="{{ section.content.image }}" alt="{{ section.content.title }}">
+    {% endif %}
+
+    {% if section.content.button_label and section.content.button_url %}
+        <a href="{{ section.content.button_url }}">
+            {{ section.content.button_label }}
+        </a>
+    {% endif %}
+</section>

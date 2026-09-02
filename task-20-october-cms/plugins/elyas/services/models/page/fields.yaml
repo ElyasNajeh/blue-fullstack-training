@@ -1,0 +1,30 @@
+fields:
+    title:
+        label: Page Title
+        type: text
+        required: true
+
+    slug:
+        label: Slug
+        type: text
+        required: true
+        comment: Used in the public page URL.
+
+    status:
+        label: Status
+        type: dropdown
+        default: draft
+
+    seo_title:
+        label: SEO Title
+        type: text
+
+    seo_description:
+        label: SEO Description
+        type: textarea
+        size: small
+    
+    sections:
+        label: Page Sections
+        type: relation
+        span: full

@@ -1,0 +1,14 @@
+name: Dynamic Page
+modelClass: Elyas\Services\Models\Page
+form: $/elyas/services/models/page/fields.yaml
+defaultRedirect: elyas/services/pages
+
+create:
+    title: Create Page
+    redirect: 'elyas/services/pages/update/:id'
+    redirectClose: elyas/services/pages
+
+update:
+    title: Edit Page
+    redirect: elyas/services/pages
+    redirectClose: elyas/services/pages

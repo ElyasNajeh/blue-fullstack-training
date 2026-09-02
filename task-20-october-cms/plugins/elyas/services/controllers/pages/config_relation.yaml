@@ -1,0 +1,8 @@
+sections:
+    label: Page Sections
+    view:
+        list: $/elyas/services/models/pagesection/columns.yaml
+        toolbarButtons: create|delete
+
+    manage:
+        form: $/elyas/services/models/pagesection/fields.yaml

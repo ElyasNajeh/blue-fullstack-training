@@ -1,0 +1,11 @@
+columns:
+    type:
+        label: Section Type
+
+    display_order:
+        label: Display Order
+        sortable: true
+
+    is_active:
+        label: Active
+        type: switch
