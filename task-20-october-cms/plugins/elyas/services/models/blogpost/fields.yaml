@@ -1,0 +1,48 @@
+fields:
+    title:
+        label: Title
+        type: text
+        required: true
+
+    slug:
+        label: Slug
+        type: text
+        required: true
+
+    excerpt:
+        label: Short Excerpt
+        type: textarea
+        size: small
+        required: true
+
+    content:
+        label: Content
+        type: textarea
+        size: huge
+        required: true
+
+    category:
+        label: Category
+        type: relation
+        nameFrom: name
+        required: true
+
+    featured_image:
+        label: Featured Image
+        type: fileupload
+        mode: image
+        fileTypes: jpg,jpeg,png,webp
+        maxFiles: 1
+
+    status:
+        label: Publication Status
+        type: dropdown
+        options:
+            draft: Draft
+            published: Published
+        default: draft
+
+    published_at:
+        label: Published At
+        type: datepicker
+        mode: datetime

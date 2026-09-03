@@ -34,6 +34,9 @@ class Plugin extends PluginBase
             \Elyas\Services\Components\ServiceDetails::class => 'serviceDetails',
             \Elyas\Services\Components\ContactForm::class => 'contactForm',
             \Elyas\Services\Components\DynamicPage::class => 'dynamicPage',
+            \Elyas\Services\Components\BlogList::class => 'blogList',
+            \Elyas\Services\Components\BlogDetails::class => 'blogDetails',
+
         ];
     }
 
@@ -58,6 +61,11 @@ class Plugin extends PluginBase
             'elyas.services.pages' => [
                 'tab' => 'Services',
                 'label' => 'Manage Dynamic Pages'
+            ],
+
+            'elyas.services.blog' => [
+                'tab' => 'Services',
+                'label' => 'Manage Blog'
             ],
         ];
     }
@@ -114,6 +122,20 @@ class Plugin extends PluginBase
                         'url' => Backend::url('elyas/services/pages'),
                         'icon' => 'icon-file-text-o',
                         'permissions' => ['elyas.services.pages'],
+                    ],
+
+                    'blog_categories' => [
+                        'label' => 'Blog Categories',
+                        'url' => Backend::url('elyas/services/blogcategories'),
+                        'icon' => 'icon-folder-open',
+                        'permissions' => ['elyas.services.blog'],
+                    ],
+
+                    'blog_posts' => [
+                        'label' => 'Blog Posts',
+                        'url' => Backend::url('elyas/services/blogposts'),
+                        'icon' => 'icon-newspaper-o',
+                        'permissions' => ['elyas.services.blog'],
                     ],
                 ],
             ],

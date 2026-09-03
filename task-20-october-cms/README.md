@@ -169,6 +169,36 @@ http://127.0.0.1:8000/admin
 
 ---
 
+## Task 25 - October CMS Blog / News Module
+
+- Added a database-backed `BlogCategory` entity with name, unique slug, status, display order, and timestamps.
+- Added a database-backed `BlogPost` entity with title, unique slug, excerpt, content, category, featured image, publication status, published date, and timestamps.
+- Added validation for required Blog Category and Blog Post fields.
+- Added backend CRUD management for Blog Categories and Blog Posts.
+- Added backend permission protection for managing Blog/News content.
+- Added Blog Categories and Blog Posts to the backend navigation.
+- Added featured image upload support for Blog Posts.
+- Added Draft and Published publication statuses.
+- Restricted public Blog content to Published posts whose publication date is not in the future.
+- Created a reusable Blog Listing component.
+- Displayed Blog Posts with their Category and Featured Image.
+- Added database-backed pagination to the public Blog listing.
+- Added public Blog search by title, excerpt, and content.
+- Added Category filtering using database-backed Blog Categories.
+- Supported Search and Category filtering together while preserving pagination.
+- Added a dynamic Blog Details page using the post slug.
+- Displayed the Blog Post title, featured image, category, published date, and main content.
+- Added not-found handling for unknown, Draft, and unavailable Blog Posts.
+- Added a Related Posts section using other Published posts from the same Category.
+- Excluded the current Blog Post from Related Posts and limited the number of related items.
+- Added dynamic SEO metadata using the Blog Post title and excerpt.
+- Added the Blog page to the public website navigation.
+- Added responsive styling for Blog listing, search, filters, pagination, details, and related posts.
+- Reused October CMS components and theme markup across the Blog module.
+- Verified search, category filtering, pagination, Blog details, Related Posts, publication rules, SEO metadata, and responsive behavior.
+
+---
+
 ## Project Structure
 
 ```text

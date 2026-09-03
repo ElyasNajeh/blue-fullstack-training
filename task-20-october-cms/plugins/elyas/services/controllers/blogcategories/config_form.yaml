@@ -1,0 +1,11 @@
+name: Blog Category
+form: $/elyas/services/models/blogcategory/fields.yaml
+modelClass: Elyas\Services\Models\BlogCategory
+
+create:
+    redirect: elyas/services/blogcategories/update/:id
+    redirectClose: elyas/services/blogcategories
+
+update:
+    redirect: elyas/services/blogcategories
+    redirectClose: elyas/services/blogcategories

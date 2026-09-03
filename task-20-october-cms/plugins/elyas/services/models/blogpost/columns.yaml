@@ -1,0 +1,27 @@
+columns:
+    title:
+        label: Title
+        searchable: true
+
+    slug:
+        label: Slug
+        searchable: true
+
+    category:
+        label: Category
+        relation: category
+        select: name
+
+    status:
+        label: Status
+        sortable: true
+
+    published_at:
+        label: Published At
+        type: datetime
+        sortable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        sortable: true

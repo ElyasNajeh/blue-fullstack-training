@@ -1,0 +1,60 @@
+<article class="blog-details">
+
+    {% if post.featured_image %}
+    <img class="blog-details-image" src="{{ post.featured_image.path }}" alt="{{ post.title }}">
+    {% endif %}
+
+    <h1>{{ post.title }}</h1>
+
+    <div class="blog-details-info">
+
+        {% if post.category %}
+        <span>
+            Category: {{ post.category.name }}
+        </span>
+        {% endif %}
+
+        {% if post.published_at %}
+        <span>
+            Published: {{ post.published_at|date('Y-m-d') }}
+        </span>
+        {% endif %}
+
+    </div>
+
+    <div class="blog-content">
+        {{ post.content }}
+    </div>
+
+</article>
+
+
+{% if relatedPosts|length %}
+
+<section class="related-posts">
+
+    <h2>Related Posts</h2>
+
+    <div class="related-posts-grid">
+
+        {% for related in relatedPosts %}
+
+        <article class="related-post">
+
+            <h3>
+                <a href="{{ 'blog-post'|page({ slug: related.slug }) }}">
+                    {{ related.title }}
+                </a>
+            </h3>
+
+            <p>{{ related.excerpt }}</p>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}

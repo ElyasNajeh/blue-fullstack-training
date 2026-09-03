@@ -1,0 +1,21 @@
+columns:
+    name:
+        label: Name
+        searchable: true
+
+    slug:
+        label: Slug
+        searchable: true
+
+    status:
+        label: Status
+        sortable: true
+
+    display_order:
+        label: Display Order
+        sortable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        sortable: true

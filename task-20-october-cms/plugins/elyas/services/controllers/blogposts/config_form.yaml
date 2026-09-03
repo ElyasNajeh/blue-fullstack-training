@@ -1,0 +1,11 @@
+name: Blog Post
+form: $/elyas/services/models/blogpost/fields.yaml
+modelClass: Elyas\Services\Models\BlogPost
+
+create:
+    redirect: elyas/services/blogposts/update/:id
+    redirectClose: elyas/services/blogposts
+
+update:
+    redirect: elyas/services/blogposts
+    redirectClose: elyas/services/blogposts

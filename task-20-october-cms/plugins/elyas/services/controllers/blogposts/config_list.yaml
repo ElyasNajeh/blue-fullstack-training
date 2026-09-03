@@ -1,0 +1,10 @@
+list: $/elyas/services/models/blogpost/columns.yaml
+modelClass: Elyas\Services\Models\BlogPost
+title: Blog Posts
+
+recordUrl: elyas/services/blogposts/update/:id
+
+showCheckboxes: true
+
+toolbar:
+    buttons: list_toolbar
