@@ -1,0 +1,12 @@
+name: Document Category
+form: $/elyas/services/models/documentcategory/fields.yaml
+modelClass: Elyas\Services\Models\DocumentCategory
+defaultRedirect: elyas/services/documentcategories
+
+create:
+    redirect: 'elyas/services/documentcategories/update/:id'
+    redirectClose: elyas/services/documentcategories
+
+update:
+    redirect: elyas/services/documentcategories
+    redirectClose: elyas/services/documentcategories

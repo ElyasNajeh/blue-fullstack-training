@@ -29,3 +29,11 @@ v1.0.7:
 v1.0.8:
     - 'Create blog posts table'
     - create_blog_posts_table.php
+
+1.0.9:
+    - 'Create document categories table'
+    - create_document_categories_table.php
+
+1.0.10:
+    - 'Create documents table'
+    - create_documents_table.php

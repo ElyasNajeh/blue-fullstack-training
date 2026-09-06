@@ -199,6 +199,40 @@ http://127.0.0.1:8000/admin
 
 ---
 
+## Task 26 - October CMS Document Library
+
+- Added a database-backed `DocumentCategory` entity with name, unique slug, status, display order, and timestamps.
+- Added a database-backed `Document` entity with title, unique slug, short description, category, attached file, publication status, publication date, download counter, and timestamps.
+- Added validation for required Document Category and Document fields.
+- Added unique slug validation for Document Categories and Documents.
+- Added October CMS file attachment support for Documents.
+- Added server-side file validation for supported document types and maximum file size.
+- Supported PDF, DOC/DOCX, XLS/XLSX, and PPT/PPTX uploads.
+- Added backend CRUD management for Document Categories and Documents.
+- Added backend permission protection for managing the Document Library.
+- Added Document Categories and Documents to the backend navigation.
+- Added Draft and Published document statuses.
+- Restricted the public Document Library to eligible Published Documents.
+- Created a reusable Document Library component.
+- Added a public `/documents` page using the existing theme.
+- Displayed document title, category, description, file type, and publication/upload date.
+- Added database-backed search by document title and description.
+- Added Category filtering and supported Search and Category filtering together.
+- Added database-backed pagination while preserving active search and filter values.
+- Added a public Download action for available document files.
+- Added download counter tracking for valid document download requests.
+- Prevented unavailable or unpublished Documents from being downloaded through the public library.
+- Tested replacing an existing Document attachment while preserving its content record and metadata.
+- Verified the public library uses the latest attached file after replacement.
+- Added clear empty states for an empty library and searches or filters with no results.
+- Added clear feedback for Documents with missing attached files.
+- Added validation feedback for unsupported file uploads.
+- Added the Documents page to the public website navigation.
+- Added responsive styling for the Document Library, filters, document cards, downloads, and pagination.
+- Verified backend management, permissions, validation, search, filtering, pagination, downloads, file replacement, and missing-file behavior.
+
+---
+
 ## Project Structure
 
 ```text

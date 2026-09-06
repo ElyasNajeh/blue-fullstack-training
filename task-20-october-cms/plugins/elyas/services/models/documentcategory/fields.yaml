@@ -1,0 +1,25 @@
+fields:
+    name:
+        label: Name
+        type: text
+        required: true
+
+    slug:
+        label: Slug
+        type: text
+        required: true
+
+    status:
+        label: Status
+        type: dropdown
+        options:
+            active: Active
+            inactive: Inactive
+        default: active
+        required: true
+
+    display_order:
+        label: Display Order
+        type: number
+        default: 0
+        required: true

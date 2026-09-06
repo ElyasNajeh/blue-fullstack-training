@@ -1,0 +1,133 @@
+<div class="document-library">
+
+    <form method="GET" class="document-filters">
+
+        <input type="text" name="search" value="{{ search }}" placeholder="Search documents...">
+
+        <select name="category">
+            <option value="">All Categories</option>
+
+            {% for category in documentCategories %}
+            <option value="{{ category.slug }}" {% if selectedCategory==category.slug %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Search</button>
+
+        {% if search or selectedCategory %}
+        <a href="{{ 'documents'|page }}">Clear</a>
+        {% endif %}
+
+    </form>
+
+
+    {% if documents.count %}
+
+    <div class="document-grid">
+
+        {% for document in documents %}
+
+        <article class="document-card">
+
+            <h2>{{ document.title }}</h2>
+
+            {% if document.category %}
+            <p>
+                <strong>Category:</strong>
+                {{ document.category.name }}
+            </p>
+            {% endif %}
+
+            <p>{{ document.description }}</p>
+
+            {% if document.file %}
+            <p>
+                <strong>File Type:</strong>
+                {{ document.file.extension|upper }}
+            </p>
+            {% endif %}
+
+            {% if document.published_at %}
+            <p>
+                <strong>Published:</strong>
+                {{ document.published_at|date('M d, Y') }}
+            </p>
+            {% else %}
+            <p>
+                <strong>Uploaded:</strong>
+                {{ document.created_at|date('M d, Y') }}
+            </p>
+            {% endif %}
+
+
+            {% if document.file %}
+
+            <form data-request="documentLibrary::onDownload" data-request-data="document_id: {{ document.id }}"
+                class="document-download-form">
+                <button type="submit" class="document-download">
+                    Download
+                </button>
+            </form>
+
+            {% else %}
+
+            <p class="document-unavailable">
+                File currently unavailable.
+            </p>
+
+            {% endif %}
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% if documents.lastPage > 1 %}
+
+    <div class="document-pagination">
+
+        {% if documents.previousPageUrl %}
+        <a href="{{ documents.previousPageUrl }}">
+            Previous
+        </a>
+        {% endif %}
+
+        <span>
+            Page {{ documents.currentPage }}
+            of {{ documents.lastPage }}
+        </span>
+
+        {% if documents.nextPageUrl %}
+        <a href="{{ documents.nextPageUrl }}">
+            Next
+        </a>
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+
+    {% else %}
+
+    {% if search or selectedCategory %}
+
+    <p class="document-empty">
+        No documents match your search or selected category.
+    </p>
+
+    {% else %}
+
+    <p class="document-empty">
+        No documents are currently available.
+    </p>
+
+    {% endif %}
+
+    {% endif %}
+
+</div>

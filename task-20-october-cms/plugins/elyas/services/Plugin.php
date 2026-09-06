@@ -36,7 +36,7 @@ class Plugin extends PluginBase
             \Elyas\Services\Components\DynamicPage::class => 'dynamicPage',
             \Elyas\Services\Components\BlogList::class => 'blogList',
             \Elyas\Services\Components\BlogDetails::class => 'blogDetails',
-
+            \Elyas\Services\Components\DocumentLibrary::class => 'documentLibrary',
         ];
     }
 
@@ -66,6 +66,11 @@ class Plugin extends PluginBase
             'elyas.services.blog' => [
                 'tab' => 'Services',
                 'label' => 'Manage Blog'
+            ],
+
+            'elyas.services.documents' => [
+                'tab' => 'Services',
+                'label' => 'Manage Document Library'
             ],
         ];
     }
@@ -136,6 +141,20 @@ class Plugin extends PluginBase
                         'url' => Backend::url('elyas/services/blogposts'),
                         'icon' => 'icon-newspaper-o',
                         'permissions' => ['elyas.services.blog'],
+                    ],
+
+                    'document_categories' => [
+                        'label' => 'Document Categories',
+                        'url' => Backend::url('elyas/services/documentcategories'),
+                        'icon' => 'icon-folder-open',
+                        'permissions' => ['elyas.services.documents'],
+                    ],
+
+                    'documents' => [
+                        'label' => 'Documents',
+                        'url' => Backend::url('elyas/services/documents'),
+                        'icon' => 'icon-file',
+                        'permissions' => ['elyas.services.documents'],
                     ],
                 ],
             ],

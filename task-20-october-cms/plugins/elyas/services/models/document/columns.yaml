@@ -1,0 +1,24 @@
+columns:
+    title:
+        label: Title
+        searchable: true
+        sortable: true
+
+    category:
+        label: Category
+        relation: category
+        select: name
+        sortable: true
+
+    status:
+        label: Status
+        sortable: true
+
+    download_count:
+        label: Downloads
+        sortable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        sortable: true

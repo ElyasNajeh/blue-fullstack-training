@@ -1,0 +1,12 @@
+name: Document
+form: $/elyas/services/models/document/fields.yaml
+modelClass: Elyas\Services\Models\Document
+defaultRedirect: elyas/services/documents
+
+create:
+    redirect: 'elyas/services/documents/update/:id'
+    redirectClose: elyas/services/documents
+
+update:
+    redirect: elyas/services/documents
+    redirectClose: elyas/services/documents
