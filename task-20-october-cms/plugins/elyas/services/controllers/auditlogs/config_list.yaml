@@ -1,0 +1,49 @@
+modelClass: Elyas\Services\Models\AuditLog
+title: Audit Log
+
+list:
+    columns:
+        created_at:
+            label: Date / Time
+            type: datetime
+
+        backend_user_name:
+            label: User
+
+        action:
+            label: Action
+
+        module:
+            label: Module / Entity
+
+        record_id:
+            label: Record ID
+
+        description:
+            label: Description
+
+    defaultSort:
+        column: created_at
+        direction: desc
+
+    recordUrl: elyas/services/auditlogs/view/:id
+
+filter:
+    scopes:
+        action:
+            label: Action
+            type: group
+            conditions: action in (:filtered)
+            options:
+                Create: Create
+                Update: Update
+                Delete: Delete
+                Status Change: Status Change
+
+        module:
+            label: Module
+            type: group
+            conditions: module in (:filtered)
+            options:
+                Blog Post: Blog Post
+                Document: Document

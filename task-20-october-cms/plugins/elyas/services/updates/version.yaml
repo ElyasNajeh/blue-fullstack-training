@@ -37,3 +37,7 @@ v1.0.8:
 1.0.10:
     - 'Create documents table'
     - create_documents_table.php
+
+1.0.11:
+    - 'Create audit logs table'
+    - create_audit_logs_table.php

@@ -233,6 +233,51 @@ http://127.0.0.1:8000/admin
 
 ---
 
+## Task 27 - October CMS Audit Log & Administrative Activity Tracking
+
+- Reviewed the existing backend permissions for Services, Categories, Contact Messages, Dynamic Pages, Blog/News, and Documents.
+- Added a database-backed `AuditLog` entity for tracking important administrative actions.
+- Added backend user ID and username tracking for audit entries.
+- Added action type, module/entity, record ID, description, metadata, and timestamp information to Audit Logs.
+- Implemented a reusable `AuditLogger` class to centralize administrative activity logging.
+- Added audit tracking to Blog Posts and Documents.
+- Added Create, Update, Delete, and Status Change activity tracking.
+- Added structured metadata for relevant status changes.
+- Avoided logging insignificant actions such as normal page views.
+- Added a read-only Audit Log section to the October CMS backend.
+- Added backend permission protection for accessing the Audit Log.
+- Displayed date/time, backend user, action, module/entity, record ID, and description in the Audit Log list.
+- Added Audit Log filtering by action type and module/entity.
+- Added an individual Audit Log details view.
+- Displayed available structured metadata in the Audit Log details view.
+- Disabled normal backend editing and manual deletion of Audit Log records to protect audit integrity.
+- Ensured Audit Log entries remain available independently of the original content record.
+- Restricted logged metadata to explicitly selected values.
+- Excluded passwords, authentication tokens, session IDs, API keys, environment secrets, authentication headers, and uploaded file contents from Audit Logs.
+- Verified administrative actions are stored with the responsible backend user and timestamp.
+
+### Audit Logging Approach
+
+Administrative activity is recorded through a reusable `AuditLogger` class rather than duplicating the database logging logic across controllers or models. Existing content models call the shared logger for meaningful lifecycle events such as Create, Update, Delete, and Status Change.
+
+The current implementation tracks Blog Posts and Documents and can be extended to additional modules with minimal duplication.
+
+### Audit Log Access & Integrity
+
+The Audit Log backend section is protected by the `elyas.services.audit_logs` permission. Audit entries are read-only through the backend interface and cannot be manually edited or deleted.
+
+### Sensitive Data
+
+Audit metadata contains only explicitly selected information relevant to an administrative action. Passwords, tokens, session IDs, API keys, authentication headers, private environment values, credentials, and uploaded file contents must never be stored in Audit Logs.
+
+### Required Update Command
+
+After pulling the latest changes, run:
+
+```bash
+php artisan october:migrate
+---
+
 ## Project Structure
 
 ```text

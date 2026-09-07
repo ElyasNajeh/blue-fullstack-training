@@ -1,0 +1,66 @@
+<div class="layout">
+
+    <div class="layout-row">
+
+        <div class="padded-container">
+
+            <h2>Audit Log Details</h2>
+
+            <p>
+                <strong>Date / Time:</strong><br>
+                <?= e($auditLog->created_at) ?>
+            </p>
+
+            <p>
+                <strong>User:</strong><br>
+                <?= e($auditLog->backend_user_name ?: 'Unknown') ?>
+            </p>
+
+            <p>
+                <strong>Action:</strong><br>
+                <?= e($auditLog->action) ?>
+            </p>
+
+            <p>
+                <strong>Module / Entity:</strong><br>
+                <?= e($auditLog->module) ?>
+            </p>
+
+            <p>
+                <strong>Record ID:</strong><br>
+                <?= e($auditLog->record_id ?: '-') ?>
+            </p>
+
+            <p>
+                <strong>Description:</strong><br>
+                <?= e($auditLog->description) ?>
+            </p>
+
+            <p>
+                <strong>Metadata:</strong>
+            </p>
+
+            <?php if (!empty($auditLog->metadata)): ?>
+
+            <pre><?= e(json_encode(
+                    $auditLog->metadata,
+                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                )) ?></pre>
+
+            <?php else: ?>
+
+            <p>No metadata available.</p>
+
+            <?php endif ?>
+
+            <p>
+                <a href="<?= Backend::url('elyas/services/auditlogs') ?>" class="btn btn-default">
+                    Back to Audit Log
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

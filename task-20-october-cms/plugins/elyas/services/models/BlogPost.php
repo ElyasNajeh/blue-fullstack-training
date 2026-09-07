@@ -4,6 +4,7 @@ namespace Elyas\Services\Models;
 
 use Model;
 use System\Models\File;
+use Elyas\Services\Classes\AuditLogger;
 
 class BlogPost extends Model
 {
@@ -44,5 +45,54 @@ class BlogPost extends Model
             ->where('status', 'published')
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
+    }
+    protected $originalStatus;
+
+    public function beforeUpdate()
+    {
+        $this->originalStatus = $this->getOriginal('status');
+    }
+
+    public function afterCreate()
+    {
+        AuditLogger::log(
+            'Create',
+            'Blog Post',
+            $this,
+            "Created blog post: {$this->title}"
+        );
+    }
+
+    public function afterUpdate()
+    {
+        AuditLogger::log(
+            'Update',
+            'Blog Post',
+            $this,
+            "Updated blog post: {$this->title}"
+        );
+
+        if ($this->originalStatus !== $this->status) {
+            AuditLogger::log(
+                'Status Change',
+                'Blog Post',
+                $this,
+                "Changed blog post status from {$this->originalStatus} to {$this->status}",
+                [
+                    'old_status' => $this->originalStatus,
+                    'new_status' => $this->status,
+                ]
+            );
+        }
+    }
+
+    public function afterDelete()
+    {
+        AuditLogger::log(
+            'Delete',
+            'Blog Post',
+            $this,
+            "Deleted blog post: {$this->title}"
+        );
     }
 }

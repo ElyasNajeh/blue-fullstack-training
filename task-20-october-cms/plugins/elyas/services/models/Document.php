@@ -5,12 +5,15 @@ namespace Elyas\Services\Models;
 use Model;
 use System\Models\File;
 use ValidationException;
+use Elyas\Services\Classes\AuditLogger;
 
 class Document extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     public $table = 'elyas_services_documents';
+
+    protected $originalStatus;
 
     public $rules = [
         'title' => 'required',
@@ -46,10 +49,9 @@ class Document extends Model
 
     protected function validateDocumentFile()
     {
+        // October CMS may attach the file after the model is initially saved.
         if (!$this->file) {
-            throw new ValidationException([
-                'file' => 'A document file is required.'
-            ]);
+            return;
         }
 
         $allowedExtensions = [
@@ -89,5 +91,59 @@ class Document extends Model
                     ->whereNull('published_at')
                     ->orWhere('published_at', '<=', now());
             });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Audit Logging
+    |--------------------------------------------------------------------------
+    */
+
+    public function beforeUpdate()
+    {
+        $this->originalStatus = $this->getOriginal('status');
+    }
+
+    public function afterCreate()
+    {
+        AuditLogger::log(
+            'Create',
+            'Document',
+            $this,
+            "Created document: {$this->title}"
+        );
+    }
+
+    public function afterUpdate()
+    {
+        AuditLogger::log(
+            'Update',
+            'Document',
+            $this,
+            "Updated document: {$this->title}"
+        );
+
+        if ($this->originalStatus !== $this->status) {
+            AuditLogger::log(
+                'Status Change',
+                'Document',
+                $this,
+                "Changed document status from {$this->originalStatus} to {$this->status}",
+                [
+                    'old_status' => $this->originalStatus,
+                    'new_status' => $this->status,
+                ]
+            );
+        }
+    }
+
+    public function afterDelete()
+    {
+        AuditLogger::log(
+            'Delete',
+            'Document',
+            $this,
+            "Deleted document: {$this->title}"
+        );
     }
 }

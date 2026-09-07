@@ -72,6 +72,11 @@ class Plugin extends PluginBase
                 'tab' => 'Services',
                 'label' => 'Manage Document Library'
             ],
+
+            'elyas.services.audit_logs' => [
+                'tab' => 'Services',
+                'label' => 'View Audit Log'
+            ],
         ];
     }
 
@@ -155,6 +160,13 @@ class Plugin extends PluginBase
                         'url' => Backend::url('elyas/services/documents'),
                         'icon' => 'icon-file',
                         'permissions' => ['elyas.services.documents'],
+                    ],
+
+                    'audit_logs' => [
+                        'label' => 'Audit Log',
+                        'url' => Backend::url('elyas/services/auditlogs'),
+                        'icon' => 'icon-history',
+                        'permissions' => ['elyas.services.audit_logs'],
                     ],
                 ],
             ],
