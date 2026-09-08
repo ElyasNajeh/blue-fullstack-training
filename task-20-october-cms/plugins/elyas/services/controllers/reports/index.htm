@@ -1,0 +1,285 @@
+<div class="report-container">
+
+    <h2>Administrative Activity Report</h2>
+
+    <p class="text-muted">
+        Analyze administrative actions recorded in the Audit Log.
+    </p>
+
+    <!-- Filters -->
+    <form method="GET" class="report-filters">
+
+        <div>
+            <label>Date From</label>
+            <input type="date" name="date_from" value="<?= e($dateFrom) ?>" class="form-control">
+        </div>
+
+        <div>
+            <label>Date To</label>
+            <input type="date" name="date_to" value="<?= e($dateTo) ?>" class="form-control">
+        </div>
+
+        <div>
+            <label>Module</label>
+
+            <select name="module" class="form-control">
+                <option value="">All Modules</option>
+
+                <?php foreach ($modules as $module): ?>
+                <option value="<?= e($module) ?>" <?=$selectedModule===$module ? 'selected' : '' ?>>
+                    <?= e($module) ?>
+                </option>
+                <?php endforeach ?>
+            </select>
+        </div>
+
+        <div>
+            <label>Action</label>
+
+            <select name="action" class="form-control">
+                <option value="">All Actions</option>
+
+                <?php foreach ($actions as $action): ?>
+                <option value="<?= e($action) ?>" <?=$selectedAction===$action ? 'selected' : '' ?>>
+                    <?= e($action) ?>
+                </option>
+                <?php endforeach ?>
+            </select>
+        </div>
+
+        <div class="filter-actions">
+
+            <button type="submit" class="btn btn-primary">
+                Apply Filters
+            </button>
+
+            <a href="<?= Backend::url('elyas/services/reports') ?>" class="btn btn-default">
+                Clear
+            </a>
+
+            <a href="<?= Backend::url('elyas/services/reports/export') ?>?<?= http_build_query([
+            'date_from' => $dateFrom,
+            'date_to' => $dateTo,
+            'module' => $selectedModule,
+            'action' => $selectedAction,
+        ]) ?>" class="btn btn-success">
+                Export CSV
+            </a>
+
+        </div>
+
+    </form>
+
+
+    <!-- Summary -->
+    <div class="report-summary">
+
+        <div class="summary-card">
+            <span>Total Results</span>
+            <strong>
+                <?= $totalResults ?>
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Create Actions</span>
+            <strong>
+                <?= $createCount ?>
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Update Actions</span>
+            <strong>
+                <?= $updateCount ?>
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Delete Actions</span>
+            <strong>
+                <?= $deleteCount ?>
+            </strong>
+        </div>
+
+    </div>
+
+
+    <!-- Detailed Report -->
+    <div class="report-table-wrapper">
+
+        <h3>Report Results</h3>
+
+        <?php if ($logs->count()): ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date / Time</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Module</th>
+                    <th>Record ID</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <?php foreach ($logs as $log): ?>
+                <tr>
+                    <td>
+                        <?= e($log->created_at) ?>
+                    </td>
+
+                    <td>
+                        <?= e($log->backend_user_name ?: 'Unknown') ?>
+                    </td>
+
+                    <td>
+                        <?= e($log->action) ?>
+                    </td>
+
+                    <td>
+                        <?= e($log->module) ?>
+                    </td>
+
+                    <td>
+                        <?= e($log->record_id ?: '-') ?>
+                    </td>
+
+                    <td>
+                        <?= e($log->description) ?>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+
+            </tbody>
+        </table>
+
+        <?php if ($logs->lastPage() > 1): ?>
+
+        <div class="report-pagination">
+
+            <?php if ($logs->previousPageUrl()): ?>
+            <a href="<?= e($logs->previousPageUrl()) ?>" class="btn btn-default">
+                Previous
+            </a>
+            <?php endif ?>
+
+            <span>
+                Page
+                <?= $logs->currentPage() ?>
+                of
+                <?= $logs->lastPage() ?>
+            </span>
+
+            <?php if ($logs->nextPageUrl()): ?>
+            <a href="<?= e($logs->nextPageUrl()) ?>" class="btn btn-default">
+                Next
+            </a>
+            <?php endif ?>
+
+        </div>
+
+        <?php endif ?>
+
+        <?php else: ?>
+
+        <div class="callout callout-info">
+            <div class="content">
+                <p>No report results found for the selected filters.</p>
+            </div>
+        </div>
+
+        <?php endif ?>
+
+    </div>
+
+</div>
+
+
+<style>
+    .report-container {
+        padding: 25px;
+    }
+
+    .report-filters {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .report-filters label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+    }
+
+    .filter-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: 10px;
+    }
+
+    .report-summary {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .summary-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .summary-card span {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .summary-card strong {
+        font-size: 28px;
+    }
+
+    .report-table-wrapper {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .report-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 900px) {
+
+        .report-filters,
+        .report-summary {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .report-filters,
+        .report-summary {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

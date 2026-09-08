@@ -77,6 +77,16 @@ class Plugin extends PluginBase
                 'tab' => 'Services',
                 'label' => 'View Audit Log'
             ],
+
+            'elyas.services.dashboard' => [
+                'tab' => 'Services',
+                'label' => 'View Dashboard'
+            ],
+
+            'elyas.services.reports' => [
+                'tab' => 'Services',
+                'label' => 'View Reports'
+            ],
         ];
     }
 
@@ -106,6 +116,21 @@ class Plugin extends PluginBase
                 'order' => 500,
 
                 'sideMenu' => [
+
+                    'dashboard' => [
+                        'label' => 'Dashboard',
+                        'url' => Backend::url('elyas/services/dashboard'),
+                        'icon' => 'icon-dashboard',
+                        'permissions' => ['elyas.services.dashboard'],
+                    ],
+
+                    'reports' => [
+                        'label' => 'Reports',
+                        'url' => Backend::url('elyas/services/reports'),
+                        'icon' => 'icon-bar-chart',
+                        'permissions' => ['elyas.services.reports'],
+                    ],
+
                     'services' => [
                         'label' => 'Services',
                         'url' => Backend::url('elyas/services/services'),

@@ -1,0 +1,218 @@
+<div class="dashboard-container">
+
+    <h2>Overview</h2>
+
+    <p class="text-muted">
+        Quick summary of the website content and activity.
+    </p>
+
+    <div class="dashboard-kpis">
+
+        <div class="kpi-card">
+            <h4>Published Blog Posts</h4>
+            <strong>
+                <?= $publishedBlogPosts ?>
+            </strong>
+        </div>
+
+        <div class="kpi-card">
+            <h4>Draft Blog Posts</h4>
+            <strong>
+                <?= $draftBlogPosts ?>
+            </strong>
+        </div>
+
+        <div class="kpi-card">
+            <h4>Total Documents</h4>
+            <strong>
+                <?= $totalDocuments ?>
+            </strong>
+        </div>
+
+        <div class="kpi-card">
+            <h4>Total Document Downloads</h4>
+            <strong>
+                <?= $totalDownloads ?>
+            </strong>
+        </div>
+
+        <div class="kpi-card">
+            <h4>New Contact Messages</h4>
+            <strong>
+                <?= $newContactMessages ?>
+            </strong>
+        </div>
+
+        <div class="kpi-card">
+            <h4>Total Services</h4>
+            <strong>
+                <?= $totalServices ?>
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="recent-sections">
+
+        <div class="recent-section">
+
+            <div class="section-header">
+                <h3>Latest Contact Messages</h3>
+
+                <a href="<?= $contactMessagesUrl ?>" class="btn btn-default">
+                    View All
+                </a>
+            </div>
+
+            <?php if ($latestMessages->count()): ?>
+
+            <?php foreach ($latestMessages as $message): ?>
+            <div class="recent-item">
+                <strong>
+                    <?= e($message->name) ?>
+                </strong>
+
+                <span>
+                    <?= e($message->subject ?: 'No subject') ?>
+                </span>
+
+                <small>
+                    <?= e($message->created_at) ?>
+                </small>
+            </div>
+            <?php endforeach ?>
+
+            <?php else: ?>
+
+            <p>No contact messages available.</p>
+
+            <?php endif ?>
+
+        </div>
+
+        <div class="recent-section">
+
+            <div class="section-header">
+                <h3>Recent Audit Activity</h3>
+
+                <a href="<?= $auditLogsUrl ?>" class="btn btn-default">
+                    View All
+                </a>
+            </div>
+
+            <?php if ($recentAuditLogs->count()): ?>
+
+            <?php foreach ($recentAuditLogs as $log): ?>
+            <div class="recent-item">
+
+                <strong>
+                    <?= e($log->action) ?>
+                    —
+                    <?= e($log->module) ?>
+                </strong>
+
+                <span>
+                    <?= e($log->description) ?>
+                </span>
+
+                <small>
+                    <?= e($log->backend_user_name ?: 'Unknown') ?>
+                    |
+                    <?= e($log->created_at) ?>
+                </small>
+
+            </div>
+            <?php endforeach ?>
+
+            <?php else: ?>
+
+            <p>No audit activity available.</p>
+
+            <?php endif ?>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .dashboard-container {
+        padding: 25px;
+    }
+
+    .dashboard-kpis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 25px;
+    }
+
+    .kpi-card,
+    .recent-section {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 25px;
+    }
+
+    .kpi-card h4 {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .kpi-card strong {
+        font-size: 32px;
+    }
+
+    .recent-sections {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .section-header h3 {
+        margin: 0;
+    }
+
+    .recent-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .recent-item:last-child {
+        border-bottom: none;
+    }
+
+    .recent-item small {
+        color: #777;
+    }
+
+    @media (max-width: 900px) {
+
+        .dashboard-kpis,
+        .recent-sections {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .dashboard-kpis,
+        .recent-sections {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

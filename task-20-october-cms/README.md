@@ -274,6 +274,62 @@ Audit metadata contains only explicitly selected information relevant to an admi
 
 After pulling the latest changes, run:
 
+---
+
+## Task 28 - October CMS Dashboard, Reports & Data Export
+
+- Added a dedicated administrative Dashboard to the October CMS backend.
+- Added backend permission protection for Dashboard access.
+- Added six KPI summary cards using real project data.
+- Added Published Blog Posts and Draft Blog Posts KPI counts.
+- Added Total Documents and Total Document Downloads KPI values.
+- Added New Contact Messages and Total Services KPI values.
+- Added Latest Contact Messages to the Dashboard.
+- Added Recent Audit Log Activity to the Dashboard.
+- Limited recent activity sections to a practical number of records.
+- Added direct links from recent activity sections to their relevant backend sections.
+- Created a separate administrative Reports page.
+- Used existing Audit Log data as the source for administrative activity reports.
+- Added report filtering by Date From, Date To, Module, and Action Type.
+- Applied report filters directly to database queries.
+- Added filtered summary values for Total, Create, Update, and Delete actions.
+- Added a detailed report table with date/time, user, action, module, record ID, and description.
+- Added pagination to the detailed report results.
+- Added a clear empty state when no report records match the selected filters.
+- Added CSV export for administrative activity reports.
+- Ensured CSV exports respect the currently active report filters.
+- Added clear CSV column headings and meaningful export filenames.
+- Excluded sensitive information from report and CSV output.
+- Added separate backend permission protection for Reports.
+- Used database aggregation, limits, and pagination for Dashboard and Report queries.
+- Avoided loading complete datasets where database queries could perform the calculation.
+- Verified KPI values and report results against the existing backend data.
+- Verified report filters update both summary values and detailed results.
+- Verified CSV exports contain the expected filtered records.
+
+### Dashboard KPIs
+
+The administrative Dashboard displays six summary indicators:
+
+- Published Blog Posts
+- Draft Blog Posts
+- Total Documents
+- Total Document Downloads
+- New Contact Messages
+- Total Services
+
+### Reporting & Export
+
+The Reports section analyzes administrative activity recorded by the Audit Log. Reports can be filtered by date range, module, and action type. The active filters affect the database query, summary values, detailed results, pagination, and CSV export.
+
+### Performance
+
+Dashboard and reporting queries use database-level operations such as `count()`, `sum()`, `limit()`, and `paginate()` instead of loading complete datasets into memory when unnecessary.
+
+### Access Control
+
+Dashboard and Reports are protected by dedicated backend permissions. Users without the required permission cannot access the corresponding backend controller directly.
+
 ```bash
 php artisan october:migrate
 ---
